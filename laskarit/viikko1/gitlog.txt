@@ -112,5 +112,6 @@ Date:   Wed Mar 14 22:04:20 2018 +0200
     tiedosto.txt luotu
 
  tiedosto.txt | 0
- 1 file changed, 0 insertions(+), 0 deletions(-)
+ 1 file changed, 0 insertions(+), 0 deletions(-)  
+ epäsynkrooni etänä
 

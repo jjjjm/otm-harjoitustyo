@@ -1,5 +1,5 @@
 
-package com.mycompany.unicafe;
+
 
 public class Maksukortti {
  

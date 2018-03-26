@@ -12,3 +12,5 @@ ohjaamilta vihulaisilta
   * Jotain tietoja käyttäjän pelimedistymisestä tallennetaan muistiin
 * Pelaaja voi hävitä suorituksessa olevan maan tai voittaa sen (riippuen peli menestyksestä)
 
+# Mahdollisia lisäominaisuuksia
+* Pelin laajuutta lisätään

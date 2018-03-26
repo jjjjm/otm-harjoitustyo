@@ -7,3 +7,5 @@
 ### Viikko 1
 [gitlog](https://github.com/jjjjm/otm-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)  
 [komentorivi](https://github.com/jjjjm/otm-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
+### Viikko 2
+[Viikko 2](https://github.com/jjjjm/otm-harjoitustyo/tree/master/laskarit/viikko2)  

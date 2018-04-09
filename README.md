@@ -1,5 +1,12 @@
 # OTM/K18
-## Projekti
+## TDD
 ### Dokumentaatiot
 [Tuntikirjanpito](https://github.com/jjjjm/otm-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)  
 [Vaatimusmäärittely](https://github.com/jjjjm/otm-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+### Komentorivitoiminnot
+#### Testaus
+Testit voi suorittaa kommennolla 
+`mvn test`
+Testikattavuuden saa luotua komennolla 
+`mvn jacoco:report`
+Kattavuus on nähtävissä raportissa _ target/site/jacoco/index.html _

@@ -13,5 +13,5 @@ Testikattavuuden saa luotua komennolla
   
 `mvn jacoco:report`  
   
-Kattavuus on nähtävissä raportissa _ arget/site/jacoco/index.html_  
+Kattavuus on nähtävissä raportissa _target/site/jacoco/index.html_  
   

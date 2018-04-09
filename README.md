@@ -6,7 +6,12 @@
 ### Komentorivitoiminnot
 #### Testaus  
 Testit voi suorittaa kommennolla   
+  
 `mvn test`  
+  
 Testikattavuuden saa luotua komennolla   
+  
 `mvn jacoco:report`  
+  
 Kattavuus on nähtävissä raportissa _ arget/site/jacoco/index.html_  
+  

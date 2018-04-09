@@ -49,8 +49,4 @@ public class Map {
         return width;
     }
 
-    public void setLength(int length) {
-        this.length = length;
-    }
-
 }

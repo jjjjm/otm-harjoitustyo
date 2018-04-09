@@ -12,6 +12,7 @@ ohjaamilta vihulaisilta
   * Jotain tietoja käyttäjän pelin edistymisestä tallennetaan muistiin
 * Pelaaja voi hävitä suorituksessa olevan maan tai voittaa sen (riippuen peli menestyksestä)
 * Pelaaja voi sijoittaa torneja kartalle ja poistaa niitä halutessaan.
+  * Pelaaja voi sijoittaa torneja vain jos hänellä on oikea määrä rahaa
 * Peli voi generoida osittain satunnaisen kartan
 
 # Mahdollisia lisäominaisuuksia

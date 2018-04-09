@@ -6,7 +6,7 @@ ohjaamilta vihulaisilta
 
 # Perusversion tarjoama toiminallisuus
 ## Ennen pelin aloittamista
-* Pelaaja voi tarkastella aloittaa tyhjästä tai ladata vanhan suorituksen
+* Pelaaja voi aloittaa tyhjästä tai ladata vanhan suorituksen
 ## Pelin aloitettua 
 * Käyttäjä voi käynnistää pelin ja pelata ainakin yhdessä maassa
   * Jotain tietoja käyttäjän pelimedistymisestä tallennetaan muistiin

@@ -1,4 +1,4 @@
-package engine;
+package fi.defence.engine;
 
 import java.util.LinkedList;
 import javafx.scene.shape.Circle;

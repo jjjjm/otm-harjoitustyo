@@ -1,10 +1,10 @@
-package tdd.tdd;
+package fi.defence.main;
 
-import engine.Map;
+import fi.defence.engine.Map;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import ui.PlayingField;
+import fi.defence.ui.PlayingField;
 
 /**
  *
@@ -31,7 +31,7 @@ public class Main extends Application {
 
             @Override
             public void handle(long now) {
-                if (now - previous < 300000000) {
+                if (now - previous < 150000000) {
 
                 }
                 

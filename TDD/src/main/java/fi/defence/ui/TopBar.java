@@ -1,4 +1,4 @@
-package ui;
+package fi.defence.ui;
 
 import java.io.File;
 import javafx.scene.control.ToggleButton;

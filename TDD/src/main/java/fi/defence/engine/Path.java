@@ -1,4 +1,4 @@
-package engine;
+package fi.defence.engine;
 
 import java.util.ArrayList;
 import java.util.List;

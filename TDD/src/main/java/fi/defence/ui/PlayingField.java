@@ -1,7 +1,7 @@
-package ui;
+package fi.defence.ui;
 
-import engine.Map;
-import engine.Tower;
+import fi.defence.engine.Map;
+import fi.defence.engine.Tower;
 import java.util.List;
 import java.util.Objects;
 import javafx.scene.Scene;

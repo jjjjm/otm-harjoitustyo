@@ -1,29 +1,24 @@
 package engine;
 
+import fi.defence.engine.Path;
 import java.util.ArrayList;
 import javafx.util.Pair;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author jermusto
- */
 public class PathTest {
 
     Path p;
 
-    @Before
-    public void setUp() {
+    public PathTest() {
     }
 
-    /**
-     * Test of getCoords method, of class Path.
-     */
+    @Before
+    public void setUp() {
+        p = new Path(10);
+    }
+
     @Test
     public void testGetCoords() {
         ArrayList<Pair<Integer, Integer>> al = new ArrayList<>();
@@ -32,9 +27,6 @@ public class PathTest {
         assertEquals(p.getCoords(), al);
     }
 
-    /**
-     * Test of setCoords method, of class Path.
-     */
     @Test
     public void testSetCoords() {
         ArrayList<Pair<Integer, Integer>> al = new ArrayList<>();
@@ -43,17 +35,11 @@ public class PathTest {
         assertEquals(p.getCoords(), al);
     }
 
-    /**
-     * Test of generateRandomPath method, of class Path.
-     */
     @Test
     public void testGenerateRandomPath() {
-      
+
     }
 
-    /**
-     * Test of setDefaultPath method, of class Path.
-     */
     @Test
     public void testSetDefaultPath() {
         p.setDefaultPath();

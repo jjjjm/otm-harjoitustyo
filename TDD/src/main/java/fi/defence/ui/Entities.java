@@ -1,7 +1,7 @@
-package ui;
+package fi.defence.ui;
 
-import engine.Map;
-import engine.Tower;
+import fi.defence.engine.Map;
+import fi.defence.engine.Tower;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;

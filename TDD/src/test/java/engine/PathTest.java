@@ -19,7 +19,6 @@ public class PathTest {
 
     @Before
     public void setUp() {
-        p = new Path();
     }
 
     /**
@@ -49,8 +48,7 @@ public class PathTest {
      */
     @Test
     public void testGenerateRandomPath() {
-        p.generateRandomPath(0, 100, 0, 0, 100, 100, 1);
-        assertEquals(p.getCoords().size(), 3);
+      
     }
 
     /**

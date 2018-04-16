@@ -1,33 +1,41 @@
 package ui;
 
 import engine.Map;
+import engine.Tower;
 import java.util.List;
+import java.util.Objects;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Shape;
 import javafx.util.Pair;
 
 public class PlayingField {
-    
-    private Pane pane;
-    private Scene scene;
-    private Map Map;
-    private TopBar topBar;
+
+    private final BorderPane bPane;
+    private final Pane pane;
+    private final Scene scene;
+    private final Map Map;
+    private final TopBar topBar;
+    private final Entities ent;
 
     public PlayingField(Map map) {
+        this.bPane = new BorderPane();
         this.pane = new Pane();
         this.Map = map;
         pane.setPrefSize(this.Map.getWidth(), this.Map.getLength());
-        this.scene = new Scene(pane);
         this.topBar = new TopBar();
+        bPane.setCenter(pane);
+        this.ent = new Entities(map);
+        this.scene = new Scene(bPane);
     }
 
     public void init() {
         this.setPath();
-        this.pane.getChildren().add(this.topBar.init());
+        this.bPane.setTop(this.topBar.init());
         this.mouseInit();
     }
 
@@ -37,39 +45,58 @@ public class PlayingField {
 
     private void setPath() {
         List<Pair<Integer, Integer>> al = Map.getPath().getCoords();
+        Shape path = new Polygon((double) al.get(0).getKey() - this.Map.getPath().getWidth(), (double) al.get(0).getValue() - this.Map.getPath().getWidth());
         for (int i = 1; i < Map.getPath().getCoords().size(); i++) {
-            Polygon pathPart = new Polygon(al.get(i - 1).getKey() - 10, al.get(i - 1).getValue() - 10, al.get(i - 1).getKey() + 10, al.get(i - 1).getValue() + 10,
-                    al.get(i).getKey() + 10, al.get(i).getValue() + 10, al.get(i).getKey() - 10, al.get(i).getValue() - 10
-            );
-            pathPart.setFill(Color.BURLYWOOD);
-            this.pane.getChildren().add(pathPart);
-            this.pane.getChildren().add(new Line(al.get(i - 1).getKey(), al.get(i - 1).getValue(), al.get(i).getKey(), al.get(i).getValue()));
+            Polygon pathPart = null;
+            if (Objects.equals(al.get(i).getKey(), al.get(i - 1).getKey())) {
+                pathPart = new Polygon(
+                        (double) al.get(i - 1).getKey() - this.Map.getPath().getWidth(), (double) al.get(i - 1).getValue() - this.Map.getPath().getWidth(),
+                        (double) al.get(i - 1).getKey() + this.Map.getPath().getWidth(), (double) al.get(i - 1).getValue() - this.Map.getPath().getWidth(),
+                        (double) al.get(i).getKey() + this.Map.getPath().getWidth(), (double) al.get(i).getValue() + this.Map.getPath().getWidth(),
+                        (double) al.get(i).getKey() - this.Map.getPath().getWidth(), (double) al.get(i).getValue() + this.Map.getPath().getWidth()
+                );
+            } else {
+                pathPart = new Polygon(
+                        (double) al.get(i - 1).getKey(), (double) al.get(i - 1).getValue() - this.Map.getPath().getWidth(),
+                        (double) al.get(i - 1).getKey(), (double) al.get(i - 1).getValue() + this.Map.getPath().getWidth(),
+                        (double) al.get(i).getKey(), (double) al.get(i).getValue() + this.Map.getPath().getWidth(),
+                        (double) al.get(i).getKey(), (double) al.get(i).getValue() - this.Map.getPath().getWidth()
+                );
+            }
+            path = Polygon.union(pathPart, path);
+            path.setFill(Color.BURLYWOOD);
         }
+        this.pane.getChildren().add(path);
     }
 
     private boolean drawTower(double xd, double yd) {
-        int x =(int) Math.floor(xd);
-        int y =(int) Math.floor(yd);
-        this.pane.getChildren().add(
-                new Polygon(
-                        x - 5, y - 10,
-                        x + 5, y - 10,
-                        x + 10, y,
-                        x + 5, y + 10,
-                        x- 5, y + 10,
-                        x - 5, y));
-        this.Map.addTower(x, y);
-        return true; // todo, if placing was possible return true else false
+        this.pane.getChildren().addAll(ent.addTower(xd, yd));
+        return true;
     }
 
+//    private List<Shape> mockUpTower(double xd, double yd) {
+//        List<Shape> mockUp = ent.mockUp(xd, yd);
+//        this.pane.getChildren().addAll(ent.addTower(xd, yd));
+//        return mockUp;
+//    }
     private void mouseInit() {
+
+        this.pane.addEventFilter(MouseEvent.MOUSE_MOVED, event -> {
+            if (this.topBar.towerIsSelected()) {
+
+            }
+        });
 
         this.pane.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
             if (this.topBar.deleteIsSelected()) {
-                //todo
+                for (Shape s : this.ent.getFriendly()) {
+                    if (s.intersects(event.getSceneX(), event.getY(), 3, 3)) {
+
+                    }
+                }
             }
             if (this.topBar.towerIsSelected()) {
-                this.drawTower(event.getSceneX(), event.getSceneY());
+                this.drawTower(event.getX(), event.getY());
             }
         });
     }

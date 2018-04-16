@@ -1,6 +1,7 @@
 package tdd.tdd;
 
 import engine.Map;
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import ui.PlayingField;
@@ -17,13 +18,26 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Map map = new Map(800, 600);
-        //map.generateNewRandomPath(200,650,400,400);
-        map.getPath().setDefaultPath();
+        Map map = new Map(1000, 900);
+        map.generateNewRandomPath(15);
+        //map.getPath().setDefaultPath();
         PlayingField pf = new PlayingField(map);
         pf.init();
         primaryStage.setScene(pf.getScene());
         primaryStage.show();
+
+        new AnimationTimer() {
+            long previous = 0;
+
+            @Override
+            public void handle(long now) {
+                if (now - previous < 300000000) {
+
+                }
+                
+                previous = now;
+            }
+        }.start();
     }
 
 }

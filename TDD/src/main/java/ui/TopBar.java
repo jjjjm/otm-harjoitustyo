@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.File;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
@@ -23,6 +24,8 @@ public class TopBar {
         this.layout.getChildren().addAll(this.towerButton, this.deleteButton);
         this.layout.setTranslateX(0);
         this.layout.setTranslateY(0);
+        this.layout.getStylesheets().add("file:" + new File("style.css").getAbsolutePath());
+        this.layout.getStyleClass().add("upperbar");
         return this.layout;
     }
 

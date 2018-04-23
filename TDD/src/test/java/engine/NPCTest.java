@@ -22,7 +22,7 @@ public class NPCTest {
 
     @Test
     public void HitBoxIsSetCorrectly() {
-        assertTrue(npc.hitbox().getBoundsInLocal().intersects(new Circle(1, 1, 5).getBoundsInLocal()));
+        assertTrue(npc.getHitbox().getBoundsInLocal().intersects(new Circle(1, 1, 5).getBoundsInLocal()));
     }
     
     @Test

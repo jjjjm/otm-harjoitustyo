@@ -7,9 +7,9 @@ public class NPC {
 
     private double x, y, hitBoxRadius;
     private Path path;
-    private int atNode, health,speed;
+    private int atNode, health, speed;
 
-    public NPC(double xStart, double yStart, Path p, double hitBoxRadius, int health,int speed) {
+    public NPC(double xStart, double yStart, Path p, double hitBoxRadius, int health, int speed) {
         this.x = xStart;
         this.y = yStart;
         this.path = p;
@@ -19,12 +19,29 @@ public class NPC {
         this.speed = speed;
     }
 
-    public Shape hitbox() {
+    public Shape getHitbox() {
         return new Circle(this.x, this.y, hitBoxRadius);
     }
 
     public void traverseToNextNode() {
-        
+        int nextX = this.path.getCoords().get(atNode).getKey();
+        int nextY = this.path.getCoords().get(atNode).getValue();
+        if (this.x == nextX && this.y == nextY) {
+            this.atNode++;
+            nextX = this.path.getCoords().get(atNode).getKey();
+            nextY = this.path.getCoords().get(atNode).getValue();
+        }
+        if (this.y == nextY) {
+            this.x += nextX < this.x ? -speed : speed;
+        } else {
+            this.y += speed;
+        }
+        System.out.println(nextX + "/" + nextY);
+
+    }
+
+    public int getSpeed() {
+        return speed;
     }
 
     public double getX() {

@@ -1,7 +1,6 @@
 package fi.defence.ui;
 
 import fi.defence.engine.Map;
-import fi.defence.engine.Tower;
 import java.util.List;
 import java.util.Objects;
 import javafx.scene.Scene;
@@ -37,6 +36,13 @@ public class PlayingField {
         this.setPath();
         this.bPane.setTop(this.topBar.init());
         this.mouseInit();
+        for (int i = 0; i < 1; i++) {
+            drawEnemy();
+        }
+    }
+
+    public void animate() {
+        this.ent.returnEnemyShapes();
     }
 
     public Scene getScene() {
@@ -74,6 +80,10 @@ public class PlayingField {
         return true;
     }
 
+    private void drawEnemy() {
+        this.pane.getChildren().addAll(this.ent.addEnemy());
+    }
+
 //    private List<Shape> mockUpTower(double xd, double yd) {
 //        List<Shape> mockUp = ent.mockUp(xd, yd);
 //        this.pane.getChildren().addAll(ent.addTower(xd, yd));
@@ -90,14 +100,18 @@ public class PlayingField {
         this.pane.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
             if (this.topBar.deleteIsSelected()) {
                 for (Shape s : this.ent.getFriendly()) {
-                    if (s.intersects(event.getSceneX(), event.getY(), 3, 3)) {
-
+                    if (s.intersects(event.getSceneX(), event.getY(), 10, 10)) {
+                        this.pane.getChildren().remove(s);
+                        if (!this.Map.removeTower((int) event.getSceneX(), (int) event.getY())) {
+                        }
                     }
                 }
             }
             if (this.topBar.towerIsSelected()) {
                 this.drawTower(event.getX(), event.getY());
             }
+
+            this.topBar.getText().textProperty().setValue("" + this.Map.getMoney());
         });
     }
 

@@ -31,7 +31,7 @@ public class Tower extends PlaceableObject {
 
     public boolean shootableInRange(NPC npc) {
         Circle rangeArea = new Circle(super.getX(), super.getY(), range);
-        return rangeArea.getBoundsInParent().intersects(npc.hitbox().getBoundsInParent());
+        return rangeArea.getBoundsInParent().intersects(npc.getHitbox().getBoundsInParent());
     }
 
     public void engageShootable(NPC n) {

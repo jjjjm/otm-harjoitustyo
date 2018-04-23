@@ -31,13 +31,14 @@ public class Main extends Application {
 
             @Override
             public void handle(long now) {
-                if (now - previous < 150000000) {
-
+                if (now - previous < 30000000000000l) {
+                    System.out.println("System_check");
+                    map.resolve();
+                    pf.animate();
                 }
-                
+
                 previous = now;
             }
         }.start();
     }
-
 }

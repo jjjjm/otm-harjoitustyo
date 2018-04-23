@@ -4,12 +4,15 @@ import java.io.File;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 public class TopBar {
 
     private HBox layout;
     private ToggleButton towerButton, deleteButton;
     private ToggleGroup toggleGroup;
+    private Text text;
 
     public TopBar() {
         this.toggleGroup = new ToggleGroup();
@@ -18,10 +21,12 @@ public class TopBar {
         this.deleteButton = new ToggleButton("Delete");
         towerButton.setToggleGroup(toggleGroup);
         deleteButton.setToggleGroup(toggleGroup);
+        this.text = new Text("30");
+        this.text.setFont(Font.font("Verdana", 20));
     }
 
     public HBox init() {
-        this.layout.getChildren().addAll(this.towerButton, this.deleteButton);
+        this.layout.getChildren().addAll(this.towerButton, this.deleteButton,text);
         this.layout.setTranslateX(0);
         this.layout.setTranslateY(0);
         this.layout.getStylesheets().add("file:" + new File("style.css").getAbsolutePath());
@@ -39,6 +44,10 @@ public class TopBar {
 
     public boolean towerIsSelected() {
         return this.towerButton.isSelected();
+    }
+
+    public Text getText() {
+        return this.text;
     }
 
 }

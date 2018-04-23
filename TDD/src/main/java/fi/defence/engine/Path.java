@@ -9,7 +9,6 @@ import javafx.scene.shape.Shape;
 import javafx.util.Pair;
 
 public class Path {
-
     private final int width;
     private ArrayList<Pair<Integer, Integer>> coords;
     private List<Shape> hitBox;

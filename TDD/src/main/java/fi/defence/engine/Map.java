@@ -32,12 +32,8 @@ public class Map {
     public void resolveIntersects() {
         if (resolved) {
             this.resolved = false;
-            Iterator<Tower> iter1 = this.objects.iterator();
-            Iterator<NPC> iter2 = this.enemies.iterator();
-            while (iter1.hasNext()) {
-                Tower t = iter1.next();
-                while (iter2.hasNext()) {
-                    NPC n = iter2.next();
+            for (Tower t : this.objects) {
+                for (NPC n : this.enemies) {
                     if (t.shootableInRange(n)) {
                         t.engageShootable(n);
                     }
@@ -50,11 +46,11 @@ public class Map {
     private void resolveEnemies() {
         ArrayList<NPC> toRemove = new ArrayList<>();
         for (NPC n : this.enemies) {
-            if (n.getHealth() == 0) {
+            if (n.getHealth() <= 0) {
                 toRemove.add(n);
                 this.money += 1;
             }
-            if (n.getHitbox().intersects(length, 5, width, 5)) {
+            if (n.getHitbox().intersects(length, width, width, 5)) {
                 this.health -= 1;
                 n.setHealth(-1);
                 toRemove.add(n);
@@ -69,14 +65,16 @@ public class Map {
     }
 
     public void resolve() {
-        this.resolveIntersects();
-        System.out.println("Resolving intersects");
-        this.resolveEnemies();
-        System.out.println("Resolving enemies");
+        System.out.println(this.objects.size());
         this.addTowers();
-        System.out.println("Adding towers");
+        this.resolveIntersects();
+        this.resolveEnemies();
+        this.resolveEnemies();
         this.enemies.forEach(n -> n.traverseToNextNode());
-        System.out.println("Resolving enemy locations");
+    }
+
+    public void resetTowers() {
+        this.objects.forEach(t -> t.reset());
     }
 
     public NPC addEnemy() {

@@ -12,7 +12,7 @@ public class TopBar {
     private HBox layout;
     private ToggleButton towerButton, deleteButton;
     private ToggleGroup toggleGroup;
-    private Text text;
+    private Text text1;
 
     public TopBar() {
         this.toggleGroup = new ToggleGroup();
@@ -21,12 +21,12 @@ public class TopBar {
         this.deleteButton = new ToggleButton("Delete");
         towerButton.setToggleGroup(toggleGroup);
         deleteButton.setToggleGroup(toggleGroup);
-        this.text = new Text("30");
-        this.text.setFont(Font.font("Verdana", 20));
+        this.text1 = new Text("30");
+        this.text1.setFont(Font.font("Verdana", 20));
     }
 
     public HBox init() {
-        this.layout.getChildren().addAll(this.towerButton, this.deleteButton,text);
+        this.layout.getChildren().addAll(this.towerButton, this.deleteButton,text1);
         this.layout.setTranslateX(0);
         this.layout.setTranslateY(0);
         this.layout.getStylesheets().add("file:" + new File("style.css").getAbsolutePath());
@@ -47,7 +47,7 @@ public class TopBar {
     }
 
     public Text getText() {
-        return this.text;
+        return this.text1;
     }
 
 }

@@ -42,7 +42,7 @@ public class PlayingField {
     }
 
     public void animate() {
-        this.ent.returnEnemyShapes();
+        this.pane.getChildren().removeAll(this.ent.returnEnemyShapes());
     }
 
     public Scene getScene() {
@@ -92,9 +92,13 @@ public class PlayingField {
     private void mouseInit() {
 
         this.pane.addEventFilter(MouseEvent.MOUSE_MOVED, event -> {
-            if (this.topBar.towerIsSelected()) {
-
-            }
+            this.topBar.getText().textProperty().setValue("" + this.Map.getMoney() + " - " + this.Map.getHealth());
+//            List<Shape> mockUp = this.ent.mockUp(event.getX(), event.getY());
+//            if (this.topBar.towerIsSelected()) {
+//                this.pane.getChildren().addAll(mockUp);
+//                mockUp.forEach(s -> s.setTranslateX(event.getX()));
+//                mockUp.forEach(s -> s.setTranslateY(event.getY()));
+//            }
         });
 
         this.pane.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
@@ -111,7 +115,7 @@ public class PlayingField {
                 this.drawTower(event.getX(), event.getY());
             }
 
-            this.topBar.getText().textProperty().setValue("" + this.Map.getMoney());
+            //this.topBar.getText().textProperty().setValue("" + this.Map.getMoney());
         });
     }
 

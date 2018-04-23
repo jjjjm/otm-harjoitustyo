@@ -27,17 +27,21 @@ public class Main extends Application {
         primaryStage.show();
 
         new AnimationTimer() {
-            long previous = 0;
+            long previousMillis1 = 0;
+            long previousMillis2 = 0;
 
             @Override
             public void handle(long now) {
-                if (now - previous < 30000000000000l) {
-                    System.out.println("System_check");
+                if (System.currentTimeMillis() - previousMillis1 > 50) {
                     map.resolve();
                     pf.animate();
+                    previousMillis1 = System.currentTimeMillis();
                 }
-
-                previous = now;
+                if (System.currentTimeMillis() - previousMillis2 > 2000) {
+                    map.resetTowers();
+                    System.out.println("Resetting");
+                    previousMillis2 = System.currentTimeMillis();
+                }
             }
         }.start();
     }

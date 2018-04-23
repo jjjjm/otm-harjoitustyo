@@ -2,7 +2,7 @@
 ## TDD
 ### Dokumentaatiot
 [Tuntikirjanpito](https://github.com/jjjjm/otm-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)  
-[Vaatimusmäärittely](https://github.com/jjjjm/otm-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+[Vaatimusmäärittely](https://github.com/jjjjm/otm-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)  
 [Arkkitehtuuri](https://github.com/jjjjm/otm-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 ### Komentorivitoiminnot
 #### Testaus  

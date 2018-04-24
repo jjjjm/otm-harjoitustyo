@@ -1,7 +1,10 @@
 package fi.defence.engine;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Optional;
+import javafx.geometry.BoundingBox;
+import javafx.geometry.Bounds;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 
 public class Map {
@@ -20,8 +23,8 @@ public class Map {
         this.objects = new ArrayList<>();
         this.enemies = new ArrayList<>();
         this.toAdd = new ArrayList<>();
-        this.health = 25;
-        this.money = 30;
+        this.health = 10;
+        this.money = 50;
         this.resolved = true;
     }
 
@@ -50,7 +53,7 @@ public class Map {
                 toRemove.add(n);
                 this.money += 1;
             }
-            if (n.getHitbox().intersects(length, width, width, 5)) {
+            if (n.getHitbox().getBoundsInLocal().intersects(new Line(0, length, length, length).getBoundsInLocal())) {
                 this.health -= 1;
                 n.setHealth(-1);
                 toRemove.add(n);
@@ -77,35 +80,39 @@ public class Map {
         this.objects.forEach(t -> t.reset());
     }
 
-    public NPC addEnemy() {
-        NPC toReturn = new NPC(this.path.getCoords().get(0).getKey(), this.path.getCoords().get(0).getValue(), path, 10, 10, 1);
+    public Optional<NPC> addEnemy() {
+        NPC newNPC = new NPC(this.path.getCoords().get(0).getKey(), this.path.getCoords().get(0).getValue(), path, 10, 10, 1);
+        Optional<NPC> toReturn;
         if (this.enemies.size() < 15) {
-            this.enemies.add(toReturn);
+            toReturn = Optional.of(newNPC);
+            this.enemies.add(newNPC);
             return toReturn;
         } else {
+            toReturn = Optional.empty();
             return toReturn;
         }
 
     }
 
-    public boolean addTower(int x, int y) {
+    public Optional<Tower> addTower(int x, int y) {
+        Optional<Tower> toReturn = Optional.empty();
         if (this.money >= 5) {
             Tower t = new Tower(x, y, 1);
             for (Shape s : this.path.getHitBox()) {
                 if (t.getHitBox().intersects(s.getBoundsInLocal())) {
-                    return false;
+                    return toReturn;
                 }
             }
             for (Tower t2 : this.objects) {
                 if (t.getHitBox().intersects(t2.getHitBox().getBoundsInLocal())) {
-                    return false;
+                    return toReturn;
                 }
             }
             this.money -= 5;
             this.toAdd.add(new Tower(x, y, 1));
-            return true;
+            return Optional.of(t);
         }
-        return false;
+        return toReturn;
     }
 
     public boolean removeTower(int x, int y) {
@@ -121,10 +128,6 @@ public class Map {
 
     public int getMoney() {
         return money;
-    }
-
-    public void setPath(Path path) {
-        this.path = path;
     }
 
     public Path getPath() {

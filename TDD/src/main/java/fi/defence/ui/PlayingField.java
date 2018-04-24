@@ -36,13 +36,17 @@ public class PlayingField {
         this.setPath();
         this.bPane.setTop(this.topBar.init());
         this.mouseInit();
-        for (int i = 0; i < 1; i++) {
-            drawEnemy();
-        }
+        drawEnemy();
     }
 
     public void animate() {
-        this.pane.getChildren().removeAll(this.ent.returnEnemyShapes());
+        this.pane.getChildren().removeAll(this.ent.returnRemovableEnemyShapes());
+        this.pane.getChildren().addAll(this.ent.returnProjectiles());
+        this.pane.getChildren().removeAll(this.ent.returnRemovableProjectiles());
+    }
+    
+    public void addEnemy(){
+        this.drawEnemy();
     }
 
     public Scene getScene() {
@@ -84,21 +88,10 @@ public class PlayingField {
         this.pane.getChildren().addAll(this.ent.addEnemy());
     }
 
-//    private List<Shape> mockUpTower(double xd, double yd) {
-//        List<Shape> mockUp = ent.mockUp(xd, yd);
-//        this.pane.getChildren().addAll(ent.addTower(xd, yd));
-//        return mockUp;
-//    }
-    private void mouseInit() {
 
-        this.pane.addEventFilter(MouseEvent.MOUSE_MOVED, event -> {
-            this.topBar.getText().textProperty().setValue("" + this.Map.getMoney() + " - " + this.Map.getHealth());
-//            List<Shape> mockUp = this.ent.mockUp(event.getX(), event.getY());
-//            if (this.topBar.towerIsSelected()) {
-//                this.pane.getChildren().addAll(mockUp);
-//                mockUp.forEach(s -> s.setTranslateX(event.getX()));
-//                mockUp.forEach(s -> s.setTranslateY(event.getY()));
-//            }
+    private void mouseInit() {
+        this.pane.addEventFilter(MouseEvent.ANY, event -> {
+            this.topBar.getText().textProperty().setValue("" + this.Map.getMoney() + " - " + this.Map.getHealth() + (Map.getHealth()>=0 ? "" : "DEAD"));
         });
 
         this.pane.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {

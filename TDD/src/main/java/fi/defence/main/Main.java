@@ -32,15 +32,17 @@ public class Main extends Application {
 
             @Override
             public void handle(long now) {
-                if (System.currentTimeMillis() - previousMillis1 > 50) {
-                    map.resolve();
-                    pf.animate();
-                    previousMillis1 = System.currentTimeMillis();
-                }
-                if (System.currentTimeMillis() - previousMillis2 > 2000) {
-                    map.resetTowers();
-                    System.out.println("Resetting");
-                    previousMillis2 = System.currentTimeMillis();
+                if (map.getHealth() >= 0) {
+                    if (System.currentTimeMillis() - previousMillis1 > 10) {
+                        map.resolve();
+                        pf.animate();
+                        previousMillis1 = System.currentTimeMillis();
+                    }
+                    if (System.currentTimeMillis() - previousMillis2 > 2000) {
+                        map.resetTowers();
+                        pf.addEnemy();
+                        previousMillis2 = System.currentTimeMillis();
+                    }
                 }
             }
         }.start();

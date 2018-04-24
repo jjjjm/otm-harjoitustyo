@@ -72,7 +72,6 @@ public class Map {
         this.addTowers();
         this.resolveIntersects();
         this.resolveEnemies();
-        this.resolveEnemies();
         this.enemies.forEach(n -> n.traverseToNextNode());
     }
 

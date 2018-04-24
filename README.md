@@ -24,7 +24,7 @@ Tiedosto [checkstyle.xml](https://github.com/jjjjm/otm-harjoitustyo/blob/master/
   
 Raportti voidaan nähdä tiedostossa _target/site/checkstyle.html_  
   
-## Suoritettavan jarin generointi  
+### Suoritettavan jarin generointi  
 Komento  
   
 `mvn package`  

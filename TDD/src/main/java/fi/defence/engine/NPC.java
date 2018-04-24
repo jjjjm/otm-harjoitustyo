@@ -36,7 +36,7 @@ public class NPC {
         } else {
             this.y += speed;
         }
-        System.out.println(this.x + "/" + this.y + " - " + this.health);
+        //System.out.println(this.x + "/" + this.y + " - " + this.health);
 
     }
 

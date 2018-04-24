@@ -68,7 +68,7 @@ public class Map {
     }
 
     public void resolve() {
-        System.out.println(this.objects.size());
+        //System.out.println(this.objects.size());
         this.addTowers();
         this.resolveIntersects();
         this.resolveEnemies();

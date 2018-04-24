@@ -9,6 +9,7 @@ import javafx.scene.shape.Shape;
 import javafx.util.Pair;
 
 public class Path {
+
     private final int width;
     private ArrayList<Pair<Integer, Integer>> coords;
     private List<Shape> hitBox;
@@ -21,7 +22,7 @@ public class Path {
         return coords;
     }
 
-    public void setCoords(ArrayList<Pair<Integer, Integer>> coords) {//debug
+    public void setCoords(ArrayList<Pair<Integer, Integer>> coords) {
         this.coords = coords;
     }
 
@@ -34,8 +35,8 @@ public class Path {
         this.coords = new ArrayList<>();
         int intervalLenght = mapHeight / amountOfVertices;
         boolean flipFlop = true;
-        int x = 0,y = 0;
-        for (int i = 0; i <= amountOfVertices - 1; i++) {// remove start and end from the count
+        int x = 0, y = 0;
+        for (int i = 0; i <= amountOfVertices - 1; i++) { // remove start and end from the count
             if (flipFlop) {
                 x = 0 + (rng.nextInt(mapWidth));
                 flipFlop = false;
@@ -72,19 +73,14 @@ public class Path {
             Polygon pathPart = null;
             if (Objects.equals(coords.get(i).getKey(), coords.get(i - 1).getKey())) {
                 pathPart = new Polygon(
-                        (double) coords.get(i - 1).getKey() - this.width, (double) coords.get(i - 1).getValue() - this.width,
-                        (double) coords.get(i - 1).getKey() + this.width, (double) coords.get(i - 1).getValue() - this.width,
-                        (double) coords.get(i).getKey() + this.width, (double) coords.get(i).getValue() + this.width,
-                        (double) coords.get(i).getKey() - this.width, (double) coords.get(i).getValue() + this.width
+                        (double) coords.get(i - 1).getKey() - this.width, (double) coords.get(i - 1).getValue() - this.width, (double) coords.get(i - 1).getKey() + this.width, (double) coords.get(i - 1).getValue() - this.width,
+                        (double) coords.get(i).getKey() + this.width, (double) coords.get(i).getValue() + this.width, (double) coords.get(i).getKey() - this.width, (double) coords.get(i).getValue() + this.width
                 );
             } else {
                 pathPart = new Polygon(
-                        (double) coords.get(i - 1).getKey(), (double) coords.get(i - 1).getValue() - this.width,
-                        (double) coords.get(i - 1).getKey(), (double) coords.get(i - 1).getValue() + this.width,
-                        (double) coords.get(i).getKey(), (double) coords.get(i).getValue() + this.width,
-                        (double) coords.get(i).getKey(), (double) coords.get(i).getValue() - this.width
+                        (double) coords.get(i - 1).getKey(), (double) coords.get(i - 1).getValue() - this.width, (double) coords.get(i - 1).getKey(), (double) coords.get(i - 1).getValue() + this.width,
+                        (double) coords.get(i).getKey(), (double) coords.get(i).getValue() + this.width, (double) coords.get(i).getKey(), (double) coords.get(i).getValue() - this.width
                 );
-
             }
             newHitbox.add(pathPart);
         }

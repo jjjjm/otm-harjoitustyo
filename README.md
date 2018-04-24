@@ -1,5 +1,6 @@
 # OTM/K18
 ## TDD
+Eli tornipuolustuspeli
 ### Dokumentaatiot
 [Tuntikirjanpito](https://github.com/jjjjm/otm-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)  
 [Vaatimusmäärittely](https://github.com/jjjjm/otm-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)  
@@ -21,4 +22,9 @@ Tiedosto [checkstyle.xml](https://github.com/jjjjm/otm-harjoitustyo/blob/master/
   
 `mvn jxr:jxr checkstyle:checkstyle`  
   
-Raportti voidaan nähdä tiedostossa _target/site/checkstyle.html_
+Raportti voidaan nähdä tiedostossa _target/site/checkstyle.html_  
+  
+## Suoritettavan jarin generointi  
+Komento  
+`mvn package`  
+generoi suoritettavan jar tiedoston _target_ hakemistoon

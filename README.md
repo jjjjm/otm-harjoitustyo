@@ -26,5 +26,7 @@ Raportti voidaan nähdä tiedostossa _target/site/checkstyle.html_
   
 ## Suoritettavan jarin generointi  
 Komento  
+  
 `mvn package`  
+  
 generoi suoritettavan jar tiedoston _target_ hakemistoon

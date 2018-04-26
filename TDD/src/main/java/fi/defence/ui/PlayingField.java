@@ -41,6 +41,7 @@ public class PlayingField {
 
     public void animate() {
         this.pane.getChildren().removeAll(this.ent.returnRemovableEnemyShapes());
+        this.pane.getChildren().removeAll(this.ent.returnRemovableTowers());
         this.pane.getChildren().addAll(this.ent.returnProjectiles());
         this.pane.getChildren().removeAll(this.ent.returnRemovableProjectiles());
     }
@@ -107,8 +108,7 @@ public class PlayingField {
             if (this.topBar.towerIsSelected()) {
                 this.drawTower(event.getX(), event.getY());
             }
-
-            //this.topBar.getText().textProperty().setValue("" + this.Map.getMoney());
+            
         });
     }
 

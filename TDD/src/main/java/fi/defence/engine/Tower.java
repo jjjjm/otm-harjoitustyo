@@ -35,7 +35,6 @@ public class Tower extends PlaceableObject {
         Circle rangeArea = new Circle(super.getX(), super.getY(), range);
         if (!this.reset) {
             if (rangeArea.getBoundsInParent().intersects(npc.getHitbox().getBoundsInParent())) {
-                this.reset = true;
                 return true;
             }
         }
@@ -44,7 +43,7 @@ public class Tower extends PlaceableObject {
 
     public void engageShootable(NPC n) {
         n.setHealth(n.getHealth() - this.damage);
-
+        this.reset = true;
     }
 
     public Shape getHitBox() {

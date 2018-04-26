@@ -28,21 +28,22 @@ public class Main extends Application {
 
         new AnimationTimer() {
             long previousMillis1 = 0;
-            long previousMillis2 = 0;
+            long rCount = 0;
 
             @Override
             public void handle(long now) {
-                if (map.getHealth() >= 0) {
-                    if (System.currentTimeMillis() - previousMillis1 > 10) {
-                        map.resolve();
-                        pf.animate();
-                        previousMillis1 = System.currentTimeMillis();
-                    }
-                    if (System.currentTimeMillis() - previousMillis2 > 2000) {
+                if (System.currentTimeMillis() - previousMillis1 > 10) {
+                    if (rCount > 200) {
+                        System.out.println("reset");
                         map.resetTowers();
                         pf.addEnemy();
-                        previousMillis2 = System.currentTimeMillis();
+                        rCount = 0;
                     }
+                    pf.animate();
+                    map.resolve();
+                    rCount ++;
+                    previousMillis1 = System.currentTimeMillis();
+
                 }
             }
         }.start();

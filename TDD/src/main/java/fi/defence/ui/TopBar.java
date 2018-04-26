@@ -21,7 +21,7 @@ public class TopBar {
         this.deleteButton = new ToggleButton("Delete");
         towerButton.setToggleGroup(toggleGroup);
         deleteButton.setToggleGroup(toggleGroup);
-        this.text1 = new Text("30");
+        this.text1 = new Text("-/-");
         this.text1.setFont(Font.font("Verdana", 20));
     }
 

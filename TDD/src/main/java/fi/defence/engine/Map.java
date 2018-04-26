@@ -68,7 +68,6 @@ public class Map {
     }
 
     public void resolve() {
-        //System.out.println(this.objects.size());
         this.addTowers();
         this.resolveIntersects();
         this.resolveEnemies();
@@ -82,7 +81,7 @@ public class Map {
     public Optional<NPC> addEnemy() {
         NPC newNPC = new NPC(this.path.getCoords().get(0).getKey(), this.path.getCoords().get(0).getValue(), path, 10, 10, 1);
         Optional<NPC> toReturn;
-        if (this.enemies.size() < 15) {
+        if (this.enemies.size() < 1) {
             toReturn = Optional.of(newNPC);
             this.enemies.add(newNPC);
             return toReturn;
@@ -108,7 +107,7 @@ public class Map {
                 }
             }
             this.money -= 5;
-            this.toAdd.add(new Tower(x, y, 1));
+            this.toAdd.add(t);
             return Optional.of(t);
         }
         return toReturn;

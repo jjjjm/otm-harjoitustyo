@@ -17,7 +17,7 @@ public class Entities {
     private Map map;
     private HashMap<Tower, Polygon> friendly;
     private HashMap<NPC, Circle> enemies;
-    private HashMap<Circle, Circle> projectile;
+    private HashMap<Circle, NPC> projectile;
 
     public Entities(Map map) {
         this.map = map;
@@ -39,26 +39,34 @@ public class Entities {
 
     private List<Circle> translateEnemies() {
         List<Circle> toReturn = new LinkedList<>();
+        List<NPC> toRemove = new LinkedList<>();
         for (java.util.Map.Entry<NPC, Circle> n : this.enemies.entrySet()) {
             if (n.getKey().getHealth() <= 0) {
                 toReturn.add(n.getValue());
+                toRemove.add(n.getKey());
+            } else {
+                n.getValue().setCenterX(n.getValue().getCenterX() + (n.getKey().getX() - n.getValue().getCenterX()));
+                n.getValue().setCenterY(n.getValue().getCenterY() + (n.getKey().getY() - n.getValue().getCenterY()));
             }
-            n.getValue().setCenterX(n.getValue().getCenterX() + (n.getKey().getX() - n.getValue().getCenterX()));
-            n.getValue().setCenterY(n.getValue().getCenterY() + (n.getKey().getY() - n.getValue().getCenterY()));
         }
-        
+        toRemove.forEach(n -> this.enemies.remove(n));
         return toReturn;
     }
 
     List<Circle> translateProjectiles() {
         List<Circle> toReturn = new LinkedList<>();
-        for (java.util.Map.Entry<Circle, Circle> n : this.projectile.entrySet()) {
-            if(n.getKey().getBoundsInLocal().intersects(n.getValue().getBoundsInLocal())){
+        for (java.util.Map.Entry<Circle, NPC> n : this.projectile.entrySet()) {
+            if (this.enemies.containsKey(n.getValue())) {
+                Circle p = this.enemies.get(n.getValue());
+                if (n.getKey().getBoundsInLocal().intersects(p.getBoundsInLocal())) {
+                    toReturn.add(n.getKey());
+                } else {
+                    n.getKey().setCenterX(n.getKey().getCenterX() + (p.getCenterX() - n.getKey().getCenterX()) / 4);
+                    n.getKey().setCenterY(n.getKey().getCenterY() + (p.getCenterY() - n.getKey().getCenterY()) / 4);
+                }
+            } else {
                 toReturn.add(n.getKey());
             }
-            n.getKey().setCenterX(n.getKey().getCenterX() + (n.getValue().getCenterX() - n.getKey().getCenterX())/4);
-            System.out.println(n.getKey().getCenterX() + "-" + n.getKey().getCenterY());
-            n.getKey().setCenterY(n.getKey().getCenterY() + (n.getValue().getCenterY() - n.getKey().getCenterY())/4);
         }
         toReturn.forEach(p -> this.projectile.remove(p));
         return toReturn;
@@ -67,10 +75,10 @@ public class Entities {
     private List<Shape> calculateProjectiles() {
         List<Shape> toReturn = new LinkedList<>();
         for (Tower t : this.friendly.keySet()) {
-            for (java.util.Map.Entry<NPC, Circle> n : this.enemies.entrySet()) {
-                if (t.shootableInRange(n.getKey())) {
-                    Circle newProjectile = new Circle(t.getX(), t.getY(), 5);
-                    this.projectile.put(newProjectile, n.getValue());
+            for (NPC  n : this.enemies.keySet()) {
+                if (t.shootableInRange(n)) {
+                    Circle newProjectile = new Circle(t.getX(), t.getY(), 4);
+                    this.projectile.put(newProjectile, n);
                     toReturn.add(newProjectile);
                 }
             }
@@ -85,8 +93,12 @@ public class Entities {
     List<Circle> returnRemovableEnemyShapes() {
         return this.translateEnemies();
     }
-    
-    List<Circle> returnRemovableProjectiles(){
+
+    List<Shape> returnRemovableTowers() {
+        return new LinkedList<>();
+    }
+
+    List<Circle> returnRemovableProjectiles() {
         return this.translateProjectiles();
     }
 

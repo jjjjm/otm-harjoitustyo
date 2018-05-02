@@ -29,4 +29,11 @@ Komento
   
 `mvn package`  
   
-generoi suoritettavan jar tiedoston _target_ hakemistoon
+generoi suoritettavan jar tiedoston _target_ hakemistoon  
+  
+### JavaDoccien generointi 
+Komennolla  
+  
+`mvn javadoc:javadoc`
+  
+saadaan generoitua ohjelman javadoc dokumentaatiot joita pääsee katselemaan tiedostosta _target/site/apidocs/index.html_

@@ -7,6 +7,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+/**
+ * Kuvaa pelin aikana näkyvää ylävalikkoa
+ */
 public class TopBar {
 
     private HBox layout;
@@ -14,6 +17,9 @@ public class TopBar {
     private ToggleGroup toggleGroup;
     private Text text1;
 
+    /**
+     * Luo uuden TopBar() olion ja alustaa jotain tarvittavia muuttuja ja niiden välisiä yhteyksiä (esim. valintanapit)
+     */
     public TopBar() {
         this.toggleGroup = new ToggleGroup();
         this.layout = new HBox();
@@ -25,6 +31,10 @@ public class TopBar {
         this.text1.setFont(Font.font("Verdana", 20));
     }
 
+    /**
+     * Alustaa luokan oliot käyttökelpoisiksi
+     * @return palauttaa HBox olion joka voidaan lisätä juuri ikkunan lapseksi jolloin saadaan valikko palkki näkyviin
+     */
     public HBox init() {
         this.layout.getChildren().addAll(this.towerButton, this.deleteButton,text1);
         this.layout.setTranslateX(0);

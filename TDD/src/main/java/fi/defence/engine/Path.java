@@ -14,6 +14,11 @@ public class Path {
     private List<Pair<Integer, Integer>> coords;
     private List<Shape> hitBox;
 
+    /**
+     * Luo uuden Path-olion joka edustaa polkua kartalla (mitä pitkin viholliset kulkevat)
+     * @param width kertoo polun maksimi leveyden (oltava korkeintaan sama kuin kartan leveys)
+     * 
+     */
     public Path(int width) {
         this.width = width;
     }
@@ -30,6 +35,13 @@ public class Path {
         return hitBox;
     }
 
+    /**
+     * Generoi ja asettaa polun pisteiksi uudet satunnaisesti generoidut pisteet.
+     * 
+     * @param mapHeight kartan korkeus (samalla polun viimeisen pisteen y-koordinaatti)
+     * @param mapWidth kartan leveys (samalla polun pisteiden x-koordinaattien maksimi arvo)
+     * @param amountOfVertices käännöskohtien lukumäärä
+     */
     public void generateRandomPath(int mapHeight, int mapWidth, int amountOfVertices) {
         Random rng = new Random();
         this.coords = new ArrayList<>();
@@ -50,6 +62,10 @@ public class Path {
         this.calculateHitBox();
     }
 
+    /**
+     * Asettaa ennaltamääritellyt vakiopisteet polulle
+     * (Lähinnä debug ja testi tarkoituksiin)
+     */
     public void setDefaultPath() {
         this.coords = new ArrayList<>();
         this.coords.add(new Pair(400, 0));

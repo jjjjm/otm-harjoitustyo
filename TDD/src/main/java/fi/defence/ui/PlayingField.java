@@ -11,7 +11,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 import javafx.util.Pair;
-
+/**
+ * Kuvaa pelinäkymää ja vastaa sen päivityksesä
+ */
 public class PlayingField {
 
     private final BorderPane bPane;

@@ -12,14 +12,30 @@ import java.util.HashMap;
 import java.util.List;
 import javafx.util.Pair;
 
+/**
+ * Kuvaa oliota jota voidaan käyttää pelin pysyväistallennuksen rajapintana
+ */
 public class IO {
 
+    /**
+     * Luo tiedoston jos sitä ei ole olemassa ja palauttaa käsiteltävästä tiedostosta File muotoisen olion
+     * @param Luotavan/etsittävän tiedoston nimi
+     * @return palauttaa File tyyppisen olion määritellystä tiedostosat
+     */
     public File createFile(String name) throws IOException {
         File file = new File(name);
         file.createNewFile();
         return file;
     }
 
+    /**
+     * Tallentaa annetun polun tiedot annetulla nimellä tiedostoon maps.txt
+     * (Oikeastaan tallennetaan vain polun koordinaatti pisteet
+     * @param path
+     * @param name tallennettavan polun nimi
+     * @throws IOException 
+     */
+    
     public void savePath(Path path, String name) throws IOException {
         PrintWriter writer = new PrintWriter(new FileWriter(createFile("maps.txt"), true));
         writer.write(name + ":");
@@ -31,6 +47,12 @@ public class IO {
         writer.close();
     }
 
+    /**
+     * Palauttaa tiedostoon maps.txt tallennettujen polkujen tiedot
+     * @return HashMap jonka avaimina on poluille annetut nimet ja arvoina lista kyseisen polun eri pisteistä (Pisteet muodossa Pair<Integer,Integer>)
+     * @throws IOException 
+     */
+    
     public HashMap<String, List<Pair<Integer, Integer>>> loadPath() throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(this.createFile("maps.txt")));
         HashMap<String, List<Pair<Integer, Integer>>> list = new HashMap<>();

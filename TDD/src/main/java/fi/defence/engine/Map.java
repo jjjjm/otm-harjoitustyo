@@ -14,6 +14,7 @@ public class Map {
     private ArrayList<Tower> toAdd;
     private boolean resolved;
 
+    //in need of some serious refactoring
     public Map(int width, int length) {
         this.width = width;
         this.length = length;

@@ -14,10 +14,14 @@ import javafx.util.Pair;
 
 public class IO {
 
-    public void savePath(Path path, String name) throws IOException {
-        File file = new File("maps.txt");
+    public File createFile(String name) throws IOException {
+        File file = new File(name);
         file.createNewFile();
-        PrintWriter writer = new PrintWriter(new FileWriter(file, true));
+        return file;
+    }
+
+    public void savePath(Path path, String name) throws IOException {
+        PrintWriter writer = new PrintWriter(new FileWriter(createFile("maps.txt"), true));
         writer.write(name + ":");
         for (Pair<Integer, Integer> coords : path.getCoords()) {
             writer.write(coords.getKey() + "," + coords.getValue() + ":");
@@ -28,9 +32,7 @@ public class IO {
     }
 
     public HashMap<String, List<Pair<Integer, Integer>>> loadPath() throws IOException {
-        File file = new File("maps.txt");
-        file.createNewFile();
-        BufferedReader br = new BufferedReader(new FileReader(file));
+        BufferedReader br = new BufferedReader(new FileReader(this.createFile("maps.txt")));
         HashMap<String, List<Pair<Integer, Integer>>> list = new HashMap<>();
 
         for (String line; (line = br.readLine()) != null;) {

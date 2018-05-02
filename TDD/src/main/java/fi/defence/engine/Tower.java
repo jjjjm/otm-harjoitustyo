@@ -3,28 +3,28 @@ package fi.defence.engine;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 
-public class Tower extends PlaceableObject {
+public class Tower  {
 
-    private int range, damage;
+    
+    private int x, y, range, damage;
     private Shape hitBox;
     private boolean reset;
 
     public Tower(int x, int y, int damage) {
-        super(x, y);
+        this.x = x;
+        this.y = y;
         this.range = 75;
         this.damage = damage;
         hitBox = new Circle(x, y, 10);
         this.reset = false;
     }
-
-    @Override
+    
     public int getX() {
-        return super.getX();
+        return this.x;
     }
-
-    @Override
+    
     public int getY() {
-        return super.getY();
+        return this.y;
     }
 
     public int getRange() {
@@ -32,7 +32,7 @@ public class Tower extends PlaceableObject {
     }
 
     public boolean shootableInRange(NPC npc) {
-        Circle rangeArea = new Circle(super.getX(), super.getY(), range);
+        Circle rangeArea = new Circle(x, y, range);
         if (!this.reset) {
             if (rangeArea.getBoundsInParent().intersects(npc.getHitbox().getBoundsInParent())) {
                 return true;

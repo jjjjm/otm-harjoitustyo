@@ -2,8 +2,6 @@ package fi.defence.engine;
 
 import java.util.ArrayList;
 import java.util.Optional;
-import javafx.geometry.BoundingBox;
-import javafx.geometry.Bounds;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 

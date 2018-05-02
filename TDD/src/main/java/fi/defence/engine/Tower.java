@@ -3,9 +3,8 @@ package fi.defence.engine;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 
-public class Tower  {
+public class Tower {
 
-    
     private int x, y, range, damage;
     private Shape hitBox;
     private boolean reset;
@@ -18,11 +17,11 @@ public class Tower  {
         hitBox = new Circle(x, y, 10);
         this.reset = false;
     }
-    
+
     public int getX() {
         return this.x;
     }
-    
+
     public int getY() {
         return this.y;
     }

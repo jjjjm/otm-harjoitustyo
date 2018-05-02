@@ -6,7 +6,7 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import fi.defence.ui.PlayingField;
-import io.IO;
+import fi.defence.io.IO;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;

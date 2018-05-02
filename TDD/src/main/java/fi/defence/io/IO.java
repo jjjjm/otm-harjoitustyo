@@ -1,4 +1,4 @@
-package io;
+package fi.defence.io;
 
 import fi.defence.engine.Path;
 import java.io.BufferedReader;

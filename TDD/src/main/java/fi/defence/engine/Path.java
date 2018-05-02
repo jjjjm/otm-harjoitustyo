@@ -11,18 +11,18 @@ import javafx.util.Pair;
 public class Path {
 
     private final int width;
-    private ArrayList<Pair<Integer, Integer>> coords;
+    private List<Pair<Integer, Integer>> coords;
     private List<Shape> hitBox;
 
     public Path(int width) {
         this.width = width;
     }
 
-    public ArrayList<Pair<Integer, Integer>> getCoords() {
+    public List<Pair<Integer, Integer>> getCoords() {
         return coords;
     }
 
-    public void setCoords(ArrayList<Pair<Integer, Integer>> coords) {
+    public void setCoords(List<Pair<Integer, Integer>> coords) {
         this.coords = coords;
     }
 

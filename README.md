@@ -17,21 +17,21 @@ Testikattavuuden saa luotua komennolla
   
 Kattavuus on nähtävissä raportissa _target/site/jacoco/index.html_  
   
-### Checkstyle
+#### Checkstyle
 Tiedosto [checkstyle.xml](https://github.com/jjjjm/otm-harjoitustyo/blob/master/TDD/checkstyle.xml) määrittelee tyylitarkistukset ja raportti voidaan koostaa komennolla  
   
 `mvn jxr:jxr checkstyle:checkstyle`  
   
 Raportti voidaan nähdä tiedostossa _target/site/checkstyle.html_  
   
-### Suoritettavan jarin generointi  
+#### Suoritettavan jarin generointi  
 Komento  
   
 `mvn package`  
   
 generoi suoritettavan jar tiedoston _target_ hakemistoon  
   
-### JavaDoccien generointi 
+#### JavaDoccien generointi 
 Komennolla  
   
 `mvn javadoc:javadoc`

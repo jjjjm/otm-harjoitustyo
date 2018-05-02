@@ -44,6 +44,7 @@ public class PlayingField {
         this.pane.getChildren().removeAll(this.ent.returnRemovableTowers());
         this.pane.getChildren().addAll(this.ent.returnProjectiles());
         this.pane.getChildren().removeAll(this.ent.returnRemovableProjectiles());
+        this.topBar.getText().textProperty().setValue("" + this.Map.getMoney() + " - " + this.Map.getHealth() + (Map.getHealth()>=0 ? "" : "DEAD"));
     }
     
     public void addEnemy(){
@@ -91,10 +92,6 @@ public class PlayingField {
 
 
     private void mouseInit() {
-        this.pane.addEventFilter(MouseEvent.ANY, event -> {
-            this.topBar.getText().textProperty().setValue("" + this.Map.getMoney() + " - " + this.Map.getHealth() + (Map.getHealth()>=0 ? "" : "DEAD"));
-        });
-
         this.pane.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
             if (this.topBar.deleteIsSelected()) {
                 for (Shape s : this.ent.getFriendly()) {
@@ -108,7 +105,6 @@ public class PlayingField {
             if (this.topBar.towerIsSelected()) {
                 this.drawTower(event.getX(), event.getY());
             }
-            
         });
     }
 

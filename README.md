@@ -5,6 +5,7 @@ Eli tornipuolustuspeli
 [Tuntikirjanpito](https://github.com/jjjjm/otm-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)  
 [Vaatimusmäärittely](https://github.com/jjjjm/otm-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)  
 [Arkkitehtuuri](https://github.com/jjjjm/otm-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)  
+[Käyttöohje](https://github.com/jjjjm/otm-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)  
 ### Releaset  
 [Viikko 6](https://github.com/jjjjm/otm-harjoitustyo/releases)  
 ### Komentorivitoiminnot

@@ -1,9 +1,12 @@
 package fi.defence.ui;
 
 import java.io.File;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -18,6 +21,7 @@ public class TopBar {
     private Button saveButton;
     private ToggleGroup toggleGroup;
     private Text text1;
+    private TextField tf;
     private boolean save;
 
     /**
@@ -25,6 +29,7 @@ public class TopBar {
      * välisiä yhteyksiä (esim. valintanapit)
      */
     public TopBar() {
+        this.tf = new TextField();
         this.toggleGroup = new ToggleGroup();
         this.layout = new HBox();
         this.towerButton = new ToggleButton("Tower");
@@ -43,11 +48,23 @@ public class TopBar {
      * jolloin saadaan valikko palkki näkyviin
      */
     public HBox init() {
-        this.layout.getChildren().addAll(this.towerButton, this.deleteButton, text1, this.saveButton);
-        this.saveButton.setOnMouseClicked(e -> {
-            this.save = true;
-            saveButton.setText("Map saved!");
-            saveButton.setDisable(true);
+        this.layout.getChildren().addAll(this.towerButton, this.deleteButton, text1, this.saveButton, this.tf);
+        this.tf.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
+            tf.setText("");
+        });
+        this.tf.setText("Please write map name here");
+        this.saveButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                if (!"".equals(TopBar.this.tf.getText())) {
+                    TopBar.this.save = true;
+                    saveButton.setText("Map saved!");
+                    saveButton.setDisable(true);
+                    tf.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
+                } else {
+                    tf.setText("Please enter a name");
+                }
+            }
         });
         this.layout.setTranslateX(0);
         this.layout.setTranslateY(0);
@@ -68,11 +85,15 @@ public class TopBar {
         return this.towerButton.isSelected();
     }
 
+    public String getTextFieldText() {
+        return this.tf.getText();
+    }
+
     public Text getText() {
         return this.text1;
     }
-    
-    public boolean getSave(){
+
+    public boolean getSave() {
         return save;
     }
 

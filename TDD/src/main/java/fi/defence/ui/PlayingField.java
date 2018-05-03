@@ -56,6 +56,14 @@ public class PlayingField {
         this.pane.getChildren().addAll(this.ent.returnProjectiles());
         this.pane.getChildren().removeAll(this.ent.returnRemovableProjectiles());
         this.topBar.getText().textProperty().setValue("" + this.Map.getMoney() + " - " + this.Map.getHealth() + (Map.getHealth() >= 0 ? "" : "DEAD"));
+        if (topBar.getSave() && !this.saved) {
+            try {
+                this.io.savePath(this.Map.getPath(), this.topBar.getTextFieldText());
+            } catch (IOException ex) {
+                System.out.println("Vittu");
+            }
+            this.saved = true;
+        }
     }
 
     public void addEnemy() {
@@ -114,14 +122,6 @@ public class PlayingField {
             }
             if (this.topBar.towerIsSelected()) {
                 this.drawTower(event.getX(), event.getY());
-            }
-            if (topBar.getSave() && !this.saved) {
-                try {
-                    this.io.savePath(this.Map.getPath(), "placeholder");
-                } catch (IOException ex) {
-                    System.out.println("Vittu");
-                }
-                this.saved = true;
             }
         });
     }

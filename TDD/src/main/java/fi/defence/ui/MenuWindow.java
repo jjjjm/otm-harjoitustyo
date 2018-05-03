@@ -33,7 +33,7 @@ public class MenuWindow {
     }
 
     public void init() {
-        bpane.setTop(new Text("Very nice tower defence game"));
+        bpane.setTop(new Text("Generate new/load old map"));
         this.button1.setOnMouseClicked(e -> {
             this.gameStart = true;
         });

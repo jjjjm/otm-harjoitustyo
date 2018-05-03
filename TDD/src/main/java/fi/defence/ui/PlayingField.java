@@ -1,8 +1,12 @@
 package fi.defence.ui;
 
 import fi.defence.engine.Map;
+import fi.defence.io.IO;
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -11,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 import javafx.util.Pair;
+
 /**
  * Kuvaa pelinäkymää ja vastaa sen päivityksesä
  */
@@ -22,8 +27,11 @@ public class PlayingField {
     private final Map Map;
     private final TopBar topBar;
     private final Entities ent;
+    private final IO io;
+    private boolean saved;
 
-    public PlayingField(Map map) {
+    public PlayingField(Map map, IO io) {
+        this.io = io;
         this.bPane = new BorderPane();
         this.pane = new Pane();
         this.Map = map;
@@ -35,6 +43,7 @@ public class PlayingField {
     }
 
     public void init() {
+        this.saved = false;
         this.setPath();
         this.bPane.setTop(this.topBar.init());
         this.mouseInit();
@@ -46,10 +55,10 @@ public class PlayingField {
         this.pane.getChildren().removeAll(this.ent.returnRemovableTowers());
         this.pane.getChildren().addAll(this.ent.returnProjectiles());
         this.pane.getChildren().removeAll(this.ent.returnRemovableProjectiles());
-        this.topBar.getText().textProperty().setValue("" + this.Map.getMoney() + " - " + this.Map.getHealth() + (Map.getHealth()>=0 ? "" : "DEAD"));
+        this.topBar.getText().textProperty().setValue("" + this.Map.getMoney() + " - " + this.Map.getHealth() + (Map.getHealth() >= 0 ? "" : "DEAD"));
     }
-    
-    public void addEnemy(){
+
+    public void addEnemy() {
         this.drawEnemy();
     }
 
@@ -92,7 +101,6 @@ public class PlayingField {
         this.pane.getChildren().addAll(this.ent.addEnemy());
     }
 
-
     private void mouseInit() {
         this.pane.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
             if (this.topBar.deleteIsSelected()) {
@@ -106,6 +114,14 @@ public class PlayingField {
             }
             if (this.topBar.towerIsSelected()) {
                 this.drawTower(event.getX(), event.getY());
+            }
+            if (topBar.getSave() && !this.saved) {
+                try {
+                    this.io.savePath(this.Map.getPath(), "placeholder");
+                } catch (IOException ex) {
+                    System.out.println("Vittu");
+                }
+                this.saved = true;
             }
         });
     }

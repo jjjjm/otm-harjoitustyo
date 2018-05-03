@@ -51,7 +51,7 @@ public class Main extends Application {
                     System.out.println(ex);
                 }
             }
-            PlayingField pf = new PlayingField(map);
+            PlayingField pf = new PlayingField(map,io);
             pf.init();
             primaryStage.setScene(pf.getScene());
             primaryStage.show();

@@ -1,6 +1,7 @@
 package fi.defence.ui;
 
 import java.io.File;
+import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
@@ -14,17 +15,21 @@ public class TopBar {
 
     private HBox layout;
     private ToggleButton towerButton, deleteButton;
+    private Button saveButton;
     private ToggleGroup toggleGroup;
     private Text text1;
+    private boolean save;
 
     /**
-     * Luo uuden TopBar() olion ja alustaa jotain tarvittavia muuttuja ja niiden välisiä yhteyksiä (esim. valintanapit)
+     * Luo uuden TopBar() olion ja alustaa jotain tarvittavia muuttuja ja niiden
+     * välisiä yhteyksiä (esim. valintanapit)
      */
     public TopBar() {
         this.toggleGroup = new ToggleGroup();
         this.layout = new HBox();
         this.towerButton = new ToggleButton("Tower");
         this.deleteButton = new ToggleButton("Delete");
+        this.saveButton = new Button("Save this map");
         towerButton.setToggleGroup(toggleGroup);
         deleteButton.setToggleGroup(toggleGroup);
         this.text1 = new Text("-/-");
@@ -33,10 +38,17 @@ public class TopBar {
 
     /**
      * Alustaa luokan oliot käyttökelpoisiksi
-     * @return palauttaa HBox olion joka voidaan lisätä juuri ikkunan lapseksi jolloin saadaan valikko palkki näkyviin
+     *
+     * @return palauttaa HBox olion joka voidaan lisätä juuri ikkunan lapseksi
+     * jolloin saadaan valikko palkki näkyviin
      */
     public HBox init() {
-        this.layout.getChildren().addAll(this.towerButton, this.deleteButton,text1);
+        this.layout.getChildren().addAll(this.towerButton, this.deleteButton, text1, this.saveButton);
+        this.saveButton.setOnMouseClicked(e -> {
+            this.save = true;
+            saveButton.setText("Map saved!");
+            saveButton.setDisable(true);
+        });
         this.layout.setTranslateX(0);
         this.layout.setTranslateY(0);
         this.layout.getStylesheets().add("file:" + new File("style.css").getAbsolutePath());
@@ -58,6 +70,10 @@ public class TopBar {
 
     public Text getText() {
         return this.text1;
+    }
+    
+    public boolean getSave(){
+        return save;
     }
 
 }

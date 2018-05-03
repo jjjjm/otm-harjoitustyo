@@ -5,7 +5,10 @@
     -fx-border-width: 1;
 }
 .button:hover{
-    -fx-background-color: blue;
+    -fx-background-color: green;
+}
+.toggleButton:hover{
+	-fx-background-color: green;
 }
 
 

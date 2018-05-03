@@ -28,8 +28,10 @@ public class Main extends Application {
         IO io = new IO();
         MenuWindow menu = new MenuWindow();
         menu.init();
+        primaryStage.setResizable(false);
         primaryStage.setScene(menu.getScene());
         primaryStage.show();
+        
 
         menu.getLoadButton().setOnMouseClicked(e -> {
             try {
@@ -51,7 +53,7 @@ public class Main extends Application {
                     System.out.println(ex);
                 }
             }
-            PlayingField pf = new PlayingField(map,io);
+            PlayingField pf = new PlayingField(map, io);
             pf.init();
             primaryStage.setScene(pf.getScene());
             primaryStage.show();

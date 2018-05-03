@@ -15,7 +15,7 @@ import javafx.scene.text.Text;
  * Kuvaa pelin aikana näkyvää ylävalikkoa
  */
 public class TopBar {
-
+    
     private HBox layout;
     private ToggleButton towerButton, deleteButton;
     private Button saveButton;
@@ -52,7 +52,7 @@ public class TopBar {
         this.tf.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
             tf.setText("");
         });
-        this.tf.setText("Please write map name here");
+        this.tf.setText("Enter map name here");
         this.saveButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
@@ -62,7 +62,7 @@ public class TopBar {
                     saveButton.setDisable(true);
                     tf.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
                 } else {
-                    tf.setText("Please enter a name");
+                    tf.setText("Name cannot be empty");
                 }
             }
         });
@@ -72,29 +72,29 @@ public class TopBar {
         this.layout.getStyleClass().add("upperbar");
         return this.layout;
     }
-
+    
     public HBox getLayout() {
         return layout;
     }
-
+    
     public boolean deleteIsSelected() {
         return this.deleteButton.isSelected();
     }
-
+    
     public boolean towerIsSelected() {
         return this.towerButton.isSelected();
     }
-
+    
     public String getTextFieldText() {
         return this.tf.getText();
     }
-
+    
     public Text getText() {
         return this.text1;
     }
-
+    
     public boolean getSave() {
         return save;
     }
-
+    
 }

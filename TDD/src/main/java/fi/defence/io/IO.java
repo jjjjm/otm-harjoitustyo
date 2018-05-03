@@ -18,7 +18,9 @@ import javafx.util.Pair;
 public class IO {
 
     /**
-     * Luo tiedoston jos sitä ei ole olemassa ja palauttaa käsiteltävästä tiedostosta File muotoisen olion
+     * Luo tiedoston jos sitä ei ole olemassa ja palauttaa käsiteltävästä
+     * tiedostosta File muotoisen olion
+     *
      * @param Luotavan/etsittävän tiedoston nimi
      * @return palauttaa File tyyppisen olion määritellystä tiedostosat
      */
@@ -31,11 +33,11 @@ public class IO {
     /**
      * Tallentaa annetun polun tiedot annetulla nimellä tiedostoon maps.txt
      * (Oikeastaan tallennetaan vain polun koordinaatti pisteet
+     *
      * @param path
      * @param name tallennettavan polun nimi
-     * @throws IOException 
+     * @throws IOException
      */
-    
     public void savePath(Path path, String name) throws IOException {
         PrintWriter writer = new PrintWriter(new FileWriter(createFile("maps.txt"), true));
         writer.write(name + ":");
@@ -49,10 +51,11 @@ public class IO {
 
     /**
      * Palauttaa tiedostoon maps.txt tallennettujen polkujen tiedot
-     * @return HashMap jonka avaimina on poluille annetut nimet ja arvoina lista kyseisen polun eri pisteistä (Pisteet muodossa Pair<Integer,Integer>)
-     * @throws IOException 
+     *
+     * @return HashMap jonka avaimina on poluille annetut nimet ja arvoina lista
+     * kyseisen polun eri pisteistä (Pisteet muodossa Pair<Integer,Integer>)
+     * @throws IOException
      */
-    
     public HashMap<String, List<Pair<Integer, Integer>>> loadPath() throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(this.createFile("maps.txt")));
         HashMap<String, List<Pair<Integer, Integer>>> list = new HashMap<>();

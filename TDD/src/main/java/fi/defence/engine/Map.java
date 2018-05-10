@@ -7,7 +7,8 @@ import javafx.scene.shape.Shape;
 
 public class Map {
 
-    private int width, length, health, money;
+    private Player player;
+    private int width, length;
     private Path path;
     private ArrayList<Tower> objects;
     private ArrayList<NPC> enemies;
@@ -15,14 +16,12 @@ public class Map {
     private boolean resolved;
 
     public Map(int width, int length) {
+        this.player = new Player(50,10);
         this.width = width;
         this.length = length;
         this.path = new Path(25);
         this.objects = new ArrayList<>();
         this.enemies = new ArrayList<>();
-        this.toAdd = new ArrayList<>();
-        this.health = 10;
-        this.money = 50;
         this.resolved = true;
     }
 
@@ -46,10 +45,10 @@ public class Map {
         for (NPC n : this.enemies) {
             if (n.getHealth() <= 0) {
                 toRemove.add(n);
-                this.money += 1;
+                this.player.addScore();
             }
             if (n.getHitbox().getBoundsInLocal().intersects(new Line(0, length, length, length).getBoundsInLocal())) {
-                this.health -= 1;
+                this.player.takeDamage();
                 n.setHealth(-1);
                 toRemove.add(n);
             }
@@ -89,7 +88,7 @@ public class Map {
 
     public Optional<Tower> addTower(int x, int y) {
         Optional<Tower> toReturn = Optional.empty();
-        if (this.money >= 5) {
+        if (this.player.getMoney() >= 5) {
             Tower t = new Tower(x, y, 1);
             for (Shape s : this.path.getHitBox()) {
                 if (t.getHitBox().intersects(s.getBoundsInLocal())) {
@@ -101,7 +100,7 @@ public class Map {
                     return toReturn;
                 }
             }
-            this.money -= 5;
+            this.player.buildTower();
             this.toAdd.add(t);
             return Optional.of(t);
         }
@@ -111,7 +110,7 @@ public class Map {
     public boolean removeTower(int x, int y) {
         for (Tower t : this.objects) {
             if (t.getHitBox().intersects(x, y, 20, 20)) {
-                this.money += 5;
+                this.player.addScore();
                 this.objects.remove(t);
                 return true;
             }
@@ -120,7 +119,7 @@ public class Map {
     }
 
     public int getMoney() {
-        return money;
+        return this.player.getMoney();
     }
 
     public Path getPath() {
@@ -136,7 +135,7 @@ public class Map {
     }
 
     public int getHealth() {
-        return health;
+        return this.player.getHealth();
     }
 
 }

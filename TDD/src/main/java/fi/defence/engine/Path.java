@@ -93,15 +93,20 @@ public class Path {
         List<Shape> newHitbox = new ArrayList<>();
         for (int i = 1; i < coords.size(); i++) {
             Polygon pathPart = null;
+            double x1 = coords.get(i - 1).getKey();
+            double x2 = coords.get(i).getKey();
+            double y1 = coords.get(i - 1).getValue();
+            double y2 = coords.get(i).getValue();
+            double w = this.width;
             if (Objects.equals(coords.get(i).getKey(), coords.get(i - 1).getKey())) {
                 pathPart = new Polygon(
-                        (double) coords.get(i - 1).getKey() - this.width, (double) coords.get(i - 1).getValue() - this.width, (double) coords.get(i - 1).getKey() + this.width, (double) coords.get(i - 1).getValue() - this.width,
-                        (double) coords.get(i).getKey() + this.width, (double) coords.get(i).getValue() + this.width, (double) coords.get(i).getKey() - this.width, (double) coords.get(i).getValue() + this.width
+                         x1 - w,  y1 - w,  x1 + w,  y1 - w,
+                         x2 + w,  y2 + w,  x2 - w,  y2 + w
                 );
             } else {
                 pathPart = new Polygon(
-                        (double) coords.get(i - 1).getKey(), (double) coords.get(i - 1).getValue() - this.width, (double) coords.get(i - 1).getKey(), (double) coords.get(i - 1).getValue() + this.width,
-                        (double) coords.get(i).getKey(), (double) coords.get(i).getValue() + this.width, (double) coords.get(i).getKey(), (double) coords.get(i).getValue() - this.width
+                         x1,  y1 - w,  x1,  y1 + w,
+                         x2,  y2 + w,  x2,  y2 - w
                 );
             }
             newHitbox.add(pathPart);

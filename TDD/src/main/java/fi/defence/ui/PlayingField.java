@@ -24,7 +24,7 @@ public class PlayingField {
     private final Scene scene;
     private final Map Map;
     private final TopBar topBar;
-    private final Entities ent;
+    private final Entities entitities;
     private final IO io;
     private boolean saved;
 
@@ -36,7 +36,7 @@ public class PlayingField {
         pane.setPrefSize(this.Map.getWidth(), this.Map.getLength());
         this.topBar = new TopBar();
         bPane.setCenter(pane);
-        this.ent = new Entities(map);
+        this.entitities = new Entities(map);
         this.scene = new Scene(bPane);
     }
 
@@ -49,10 +49,10 @@ public class PlayingField {
     }
 
     public void animate() {
-        this.pane.getChildren().removeAll(this.ent.returnRemovableEnemyShapes());
-        this.pane.getChildren().removeAll(this.ent.returnRemovableTowers());
-        this.pane.getChildren().addAll(this.ent.returnProjectiles());
-        this.pane.getChildren().removeAll(this.ent.returnRemovableProjectiles());
+        this.pane.getChildren().removeAll(this.entitities.returnRemovableEnemyShapes());
+        this.pane.getChildren().removeAll(this.entitities.returnRemovableTowers());
+        this.pane.getChildren().addAll(this.entitities.returnProjectiles());
+        this.pane.getChildren().removeAll(this.entitities.returnRemovableProjectiles());
         this.topBar.getText().textProperty().setValue("" + this.Map.getMoney() + " - " + this.Map.getHealth() + (Map.getHealth() >= 0 ? "" : "DEAD"));
         if (topBar.getSave() && !this.saved) {
             try {
@@ -73,23 +73,28 @@ public class PlayingField {
     }
 
     private void setPath() {
-        List<Pair<Integer, Integer>> al = Map.getPath().getCoords();
-        Shape path = new Polygon((double) al.get(0).getKey() - this.Map.getPath().getWidth(), (double) al.get(0).getValue() - this.Map.getPath().getWidth());
-        for (int i = 1; i < Map.getPath().getCoords().size(); i++) {
+        List<Pair<Integer, Integer>> coordinateList = Map.getPath().getCoords();
+        Shape path = new Polygon((double) coordinateList.get(0).getKey() - this.Map.getPath().getWidth(), (double) coordinateList.get(0).getValue() - this.Map.getPath().getWidth());
+        for (int i = 1; i < coordinateList.size(); i++) {
             Polygon pathPart = null;
-            if (Objects.equals(al.get(i).getKey(), al.get(i - 1).getKey())) {
+            double x1 = coordinateList.get(i - 1).getKey();
+            double x2 = coordinateList.get(i).getKey();
+            double y1 = coordinateList.get(i - 1).getValue();
+            double y2 = coordinateList.get(i).getValue();
+            double w = this.Map.getPath().getWidth();
+            if (x1 == x2) {
                 pathPart = new Polygon(
-                        (double) al.get(i - 1).getKey() - this.Map.getPath().getWidth(), (double) al.get(i - 1).getValue() - this.Map.getPath().getWidth(),
-                        (double) al.get(i - 1).getKey() + this.Map.getPath().getWidth(), (double) al.get(i - 1).getValue() - this.Map.getPath().getWidth(),
-                        (double) al.get(i).getKey() + this.Map.getPath().getWidth(), (double) al.get(i).getValue() + this.Map.getPath().getWidth(),
-                        (double) al.get(i).getKey() - this.Map.getPath().getWidth(), (double) al.get(i).getValue() + this.Map.getPath().getWidth()
+                         x1 - w,  y1 - w,
+                         x1 + w,  y1 - w,
+                         x2 + w,  y2 + w,
+                         x2 - w,  y2 + w
                 );
             } else {
                 pathPart = new Polygon(
-                        (double) al.get(i - 1).getKey(), (double) al.get(i - 1).getValue() - this.Map.getPath().getWidth(),
-                        (double) al.get(i - 1).getKey(), (double) al.get(i - 1).getValue() + this.Map.getPath().getWidth(),
-                        (double) al.get(i).getKey(), (double) al.get(i).getValue() + this.Map.getPath().getWidth(),
-                        (double) al.get(i).getKey(), (double) al.get(i).getValue() - this.Map.getPath().getWidth()
+                         x1,  y1 - w,
+                         x1,  y1 + w,
+                         x2,  y2 + w,
+                         x2,  y2 - w
                 );
             }
             path = Polygon.union(pathPart, path);
@@ -99,18 +104,18 @@ public class PlayingField {
     }
 
     private boolean drawTower(double xd, double yd) {
-        this.pane.getChildren().addAll(ent.addTower(xd, yd));
+        this.pane.getChildren().addAll(this.entitities.addTower(xd, yd));
         return true;
     }
 
     private void drawEnemy() {
-        this.pane.getChildren().addAll(this.ent.addEnemy());
+        this.pane.getChildren().addAll(this.entitities.addEnemy());
     }
 
     private void mouseInit() {
         this.pane.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
             if (this.topBar.deleteIsSelected()) {
-                for (Shape s : this.ent.getFriendly()) {
+                for (Shape s : this.entitities.getFriendly()) {
                     if (s.intersects(event.getSceneX(), event.getY(), 10, 10)) {
                         this.pane.getChildren().remove(s);
                         if (!this.Map.removeTower((int) event.getSceneX(), (int) event.getY())) {

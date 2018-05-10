@@ -14,7 +14,6 @@ public class Map {
     private ArrayList<Tower> toAdd;
     private boolean resolved;
 
-    //in need of some serious refactoring
     public Map(int width, int length) {
         this.width = width;
         this.length = length;
@@ -32,16 +31,13 @@ public class Map {
     }
 
     public void resolveIntersects() {
-        if (resolved) {
-            this.resolved = false;
-            for (Tower t : this.objects) {
-                for (NPC n : this.enemies) {
-                    if (t.shootableInRange(n)) {
-                        t.engageShootable(n);
-                    }
+        this.resolved = false;
+        for (Tower t : this.objects) {
+            for (NPC n : this.enemies) {
+                if (t.shootableInRange(n)) {
+                    t.engageShootable(n);
                 }
             }
-            this.resolved = true;
         }
     }
 

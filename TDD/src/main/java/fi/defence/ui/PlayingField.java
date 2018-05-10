@@ -22,7 +22,7 @@ public class PlayingField {
     private final BorderPane bPane;
     private final Pane pane;
     private final Scene scene;
-    private final Map Map;
+    private final Map map;
     private final TopBar topBar;
     private final Entities entitities;
     private final IO io;
@@ -32,8 +32,8 @@ public class PlayingField {
         this.io = io;
         this.bPane = new BorderPane();
         this.pane = new Pane();
-        this.Map = map;
-        pane.setPrefSize(this.Map.getWidth(), this.Map.getLength());
+        this.map = map;
+        pane.setPrefSize(this.map.getWidth(), this.map.getLength());
         this.topBar = new TopBar();
         bPane.setCenter(pane);
         this.entitities = new Entities(map);
@@ -53,10 +53,10 @@ public class PlayingField {
         this.pane.getChildren().removeAll(this.entitities.returnRemovableTowers());
         this.pane.getChildren().addAll(this.entitities.returnProjectiles());
         this.pane.getChildren().removeAll(this.entitities.returnRemovableProjectiles());
-        this.topBar.getText().textProperty().setValue("" + this.Map.getMoney() + " - " + this.Map.getHealth() + (Map.getHealth() >= 0 ? "" : "DEAD"));
+        this.topBar.getText().textProperty().setValue("" + this.map.getMoney() + " - " + this.map.getHealth() + (map.getHealth() >= 0 ? "" : "DEAD"));
         if (topBar.getSave() && !this.saved) {
             try {
-                this.io.savePath(this.Map.getPath(), this.topBar.getTextFieldText());
+                this.io.savePath(this.map.getPath(), this.topBar.getTextFieldText());
             } catch (IOException ex) {
                 System.out.println("Vittu");
             }
@@ -73,28 +73,28 @@ public class PlayingField {
     }
 
     private void setPath() {
-        List<Pair<Integer, Integer>> coordinateList = Map.getPath().getCoords();
-        Shape path = new Polygon((double) coordinateList.get(0).getKey() - this.Map.getPath().getWidth(), (double) coordinateList.get(0).getValue() - this.Map.getPath().getWidth());
+        List<Pair<Integer, Integer>> coordinateList = map.getPath().getCoords();
+        Shape path = new Polygon((double) coordinateList.get(0).getKey() - this.map.getPath().getWidth(), (double) coordinateList.get(0).getValue() - this.map.getPath().getWidth());
         for (int i = 1; i < coordinateList.size(); i++) {
             Polygon pathPart = null;
             double x1 = coordinateList.get(i - 1).getKey();
             double x2 = coordinateList.get(i).getKey();
             double y1 = coordinateList.get(i - 1).getValue();
             double y2 = coordinateList.get(i).getValue();
-            double w = this.Map.getPath().getWidth();
+            double w = this.map.getPath().getWidth();
             if (x1 == x2) {
                 pathPart = new Polygon(
-                         x1 - w,  y1 - w,
-                         x1 + w,  y1 - w,
-                         x2 + w,  y2 + w,
-                         x2 - w,  y2 + w
+                        x1 - w, y1 - w,
+                        x1 + w, y1 - w,
+                        x2 + w, y2 + w,
+                        x2 - w, y2 + w
                 );
             } else {
                 pathPart = new Polygon(
-                         x1,  y1 - w,
-                         x1,  y1 + w,
-                         x2,  y2 + w,
-                         x2,  y2 - w
+                        x1, y1 - w,
+                        x1, y1 + w,
+                        x2, y2 + w,
+                        x2, y2 - w
                 );
             }
             path = Polygon.union(pathPart, path);
@@ -118,7 +118,7 @@ public class PlayingField {
                 for (Shape s : this.entitities.getFriendly()) {
                     if (s.intersects(event.getSceneX(), event.getY(), 10, 10)) {
                         this.pane.getChildren().remove(s);
-                        if (!this.Map.removeTower((int) event.getSceneX(), (int) event.getY())) {
+                        if (!this.map.removeTower((int) event.getSceneX(), (int) event.getY())) {
                         }
                     }
                 }

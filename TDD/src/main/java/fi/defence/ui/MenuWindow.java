@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -17,8 +19,9 @@ public class MenuWindow {
     private boolean gameStart;
     private Scene scene;
     private PlayingField pf;
-    private List<Button> mapButtons;
+    private List<ToggleButton> mapButtons;
     private String selectedMap;
+    private ToggleGroup toggleGroupMaps;
 
     public MenuWindow() {
         this.gameStart = false;
@@ -30,6 +33,7 @@ public class MenuWindow {
         this.button2 = new Button("Load map");
         hbox.getChildren().addAll(button1, button2);
         this.scene = new Scene(bpane);
+        this.toggleGroupMaps = new ToggleGroup();
     }
 
     public void init() {
@@ -47,8 +51,9 @@ public class MenuWindow {
         if (this.mapButtons == null) {
             mapButtons = new ArrayList<>();
         }
-        this.mapButtons.add(new Button(mapName));
+        this.mapButtons.add(new ToggleButton(mapName));
         this.mapButtons.forEach(b -> {
+            b.setToggleGroup(toggleGroupMaps);
             b.setOnMouseClicked(e -> {
                 this.selectedMap = b.getText();
             });
@@ -71,7 +76,7 @@ public class MenuWindow {
     }
     
     public String getSelectedMapName(){
-        return this.selectedMap == null ? "" : this.selectedMap;
+        return this.toggleGroupMaps.getSelectedToggle() != null ? this.selectedMap : "";
     }
 
 }

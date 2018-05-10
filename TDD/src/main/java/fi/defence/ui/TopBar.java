@@ -21,7 +21,7 @@ public class TopBar {
     private Button saveButton;
     private ToggleGroup toggleGroup;
     private Text text1;
-    private TextField tf;
+    private TextField textField;
     private boolean save;
 
     /**
@@ -29,7 +29,7 @@ public class TopBar {
      * välisiä yhteyksiä (esim. valintanapit)
      */
     public TopBar() {
-        this.tf = new TextField();
+        this.textField = new TextField();
         this.toggleGroup = new ToggleGroup();
         this.layout = new HBox();
         this.towerButton = new ToggleButton("Tower");
@@ -48,21 +48,21 @@ public class TopBar {
      * jolloin saadaan valikko palkki näkyviin
      */
     public HBox init() {
-        this.layout.getChildren().addAll(this.towerButton, this.deleteButton, text1, this.saveButton, this.tf);
-        this.tf.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
-            tf.setText("");
+        this.layout.getChildren().addAll(this.towerButton, this.deleteButton, text1, this.saveButton, this.textField);
+        this.textField.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
+            textField.setText("");
         });
-        this.tf.setText("Enter map name here");
+        this.textField.setText("Enter map name here");
         this.saveButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                if (!"".equals(TopBar.this.tf.getText())) {
+                if (!"".equals(TopBar.this.textField.getText())) {
                     TopBar.this.save = true;
                     saveButton.setText("Map saved!");
                     saveButton.setDisable(true);
-                    tf.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
+                    textField.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
                 } else {
-                    tf.setText("Name cannot be empty");
+                    textField.setText("Name cannot be empty");
                 }
             }
         });
@@ -86,7 +86,7 @@ public class TopBar {
     }
     
     public String getTextFieldText() {
-        return this.tf.getText();
+        return this.textField.getText();
     }
     
     public Text getText() {

@@ -8,10 +8,6 @@ import javafx.stage.Stage;
 import fi.defence.ui.PlayingField;
 import fi.defence.io.IO;
 import java.io.IOException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.util.Pair;
 
 /**
  *
@@ -31,12 +27,11 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.setScene(menu.getScene());
         primaryStage.show();
-        
-
         menu.getLoadButton().setOnMouseClicked(e -> {
             try {
                 for (String name : io.loadPath().keySet()) {
                     menu.addMapButton(name);
+                    menu.getLoadButton().setDisable(true);
                 }
             } catch (IOException ex) {
                 System.out.println(ex);

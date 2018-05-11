@@ -16,7 +16,7 @@ Tämä luo tiedostoja ja poistaa ne testien lopussa mikäli on sinänsä huono s
 
 ### Testikattavuus  
 Testien rivikattavuus on 91% ja haaraumakattavuus 82%.  
-[kuva](https://github.com/jjjjm/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/jacoco.png)  
+![kuva](https://github.com/jjjjm/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/jacoco.png)  
   
   
 Jotain Map luokankokonaisuuksia jäi.

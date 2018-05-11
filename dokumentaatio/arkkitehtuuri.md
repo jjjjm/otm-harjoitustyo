@@ -14,4 +14,16 @@ UI sisältää javafx:ää käyttävät käyttöliittymän rakentavat luokat, En
 ## Päätoiminnallisuudesta  
 Ohjelman toiminta pelin aikana  
 ![Sekvenssikuva](https://github.com/jjjjm/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/sekvenssikaavio.png)  
-Main metodi kutsuu jatkuvasti map-luokan resolve-metodia joka selvittää mahdolliset tilanteet esimerkiksi missä pitää ampua tai milloin vihollinen on tullut kartan loppuun
+Main metodi kutsuu jatkuvasti map-luokan resolve-metodia joka selvittää mahdolliset tilanteet esimerkiksi missä pitää ampua tai milloin vihollinen on tullut kartan loppuun  
+
+## Tiedostot  
+Sovellus tallentaa tietoja kartoista, tai oikeastaan vain niiden sisältämien polkujen koordinaattipisteistä erilliseen tiedostoon.  
+Sovellus luo itse tarvittaessa *maps.txt* tiedoston jos sitä ei löydy.  
+  
+Tallennettu formaatti on seuraavanlainen:  
+  
+_save:532,0:532,53:513,53:513,119:300,119:300,...(lisää pisteitä)...,:62,900:end_  
+  
+Alussa on pisteille annettu nimi, sitä seuraa kaksoispista jonka jälkeen tulevat koordinaattipisteet x-y muodossa joista jokainen on erotettu kaksoispisteillä.   
+  
+Lopussa oleva _:end_ merkkaa aina sitä edeltäneen nimen tietojen loppumista ja seuraavan alkamista/tiedoston päättymistä.

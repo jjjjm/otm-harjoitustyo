@@ -18,7 +18,7 @@ Main metodi kutsuu jatkuvasti map-luokan resolve-metodia joka selvittää mahdol
 
 ## Tiedostot  
 Sovellus tallentaa tietoja kartoista, tai oikeastaan vain niiden sisältämien polkujen koordinaattipisteistä erilliseen tiedostoon.  
-Sovellus luo itse tarvittaessa maps.txt tiedoston jos sitä ei löydy.  
+Sovellus luo itse tarvittaessa *maps.txt* tiedoston jos sitä ei löydy.  
   
 Tallennettu formaatti on seuraavanlainen:  
   

@@ -6,6 +6,7 @@ Eli tornipuolustuspeli
 [Vaatimusmäärittely](https://github.com/jjjjm/otm-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)  
 [Arkkitehtuuri](https://github.com/jjjjm/otm-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)  
 [Käyttöohje](https://github.com/jjjjm/otm-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)  
+[Testausdokumentti](https://github.com/jjjjm/otm-harjoitustyo/blob/master/dokumentaatio/testaus.md)  
 ### Releaset  
 [Viikko 6](https://github.com/jjjjm/otm-harjoitustyo/releases)  
 ### Komentorivitoiminnot

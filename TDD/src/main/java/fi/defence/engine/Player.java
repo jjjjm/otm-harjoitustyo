@@ -1,16 +1,19 @@
-
 package fi.defence.engine;
 
 /**
  * Kuvaa pelin pelaajaa
  */
 public class Player {
-    private int money,health,destroyedTowers,playedMaps;
-/**
- * Lue uuden palaajan ja asettaa alun raha , elämätilanteen annettujen parametrien mukaan sekä tiedot pelaajan menestyksestä.
- * @param money pelaajan rahatilanne alussa
- * @param health pelaajan elämäpisteet alussa
- */
+
+    private int money, health, destroyedTowers, playedMaps;
+
+    /**
+     * Lue uuden palaajan ja asettaa alun raha , elämätilanteen annettujen
+     * parametrien mukaan sekä tiedot pelaajan menestyksestä.
+     *
+     * @param money pelaajan rahatilanne alussa
+     * @param health pelaajan elämäpisteet alussa
+     */
     public Player(int money, int health) {
         this.money = money;
         this.health = health;
@@ -32,28 +35,31 @@ public class Player {
     public void setMoney(int money) {
         this.money = money;
     }
+
     /**
      * Kasvattaa pelaajantuhottujen tornien määrää sekä pelaajan raha määrää
      */
-    public void addScore(){
+    public void addScore() {
         this.money += 5;
         this.destroyedTowers++;
     }
+
     /**
      * Vähentää pelaajan elämäpisteitä yhdellä
      */
-    public void takeDamage(){
+    public void takeDamage() {
         this.health -= 1;
     }
+
     /**
      * Vähentää pelaajan rahoja tornin rakennuksen johdosta
      */
-    public void buildTower(){
-        
+    public void buildTower() {
+
     }
-    
-    public int getScore(){
+
+    public int getScore() {
         return this.destroyedTowers;
     }
-    
+
 }

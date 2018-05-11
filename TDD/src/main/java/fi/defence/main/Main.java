@@ -23,7 +23,6 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         IO io = new IO();
         MenuWindow menu = new MenuWindow();
-        menu.init();
         primaryStage.setResizable(false);
         primaryStage.setScene(menu.getScene());
         primaryStage.show();

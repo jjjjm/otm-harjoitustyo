@@ -41,7 +41,7 @@ public class Entities {
      * lista jos sellaisia ei ole
      * @see fi.defence.engine.Map#addEnemy()
      */
-    List<Circle> addEnemy() {
+    public List<Circle> addEnemy() {
         List<Circle> toReturn = new LinkedList<>();
         Circle newEnemy = new Circle(map.getPath().getCoords().get(0).getKey(), map.getPath().getCoords().get(0).getValue(), 10);
         Optional<NPC> npc = this.map.addEnemy();
@@ -107,7 +107,7 @@ public class Entities {
      * @return Palauttaa listan uusista ammuksista tai tyhjän listan jos niitä
      * ei ole
      */
-    List<Shape> returnProjectiles() {
+    public List<Shape> returnProjectiles() {
         return this.calculateProjectiles();
     }
 
@@ -117,11 +117,11 @@ public class Entities {
      *
      * @return Lista poistettavista tai tyhjä lista jos sellaisia ei ole
      */
-    List<Circle> returnRemovableEnemyShapes() {
+    public List<Circle> returnRemovableEnemyShapes() {
         return this.translateEnemies();
     }
 
-    List<Shape> returnRemovableTowers() {
+    public List<Shape> returnRemovableTowers() {
         return new LinkedList<>();
     }
 
@@ -131,7 +131,7 @@ public class Entities {
      *
      * @return Lista poistettavista tai tyhjä lista jos sellaisia ei ole
      */
-    List<Circle> returnRemovableProjectiles() {
+    public List<Circle> returnRemovableProjectiles() {
         return this.translateProjectiles();
     }
 
@@ -144,7 +144,7 @@ public class Entities {
      * listan jos uutta tornia ei voitu lisätä
      * @see fi.defence.engine.Map#addTower(int, int)
      */
-    List<Shape> addTower(double xd, double yd) {
+    public List<Shape> addTower(double xd, double yd) {
         List<Shape> toReturn = new LinkedList<Shape>();
         int x = (int) Math.floor(xd);
         int y = (int) Math.floor(yd);

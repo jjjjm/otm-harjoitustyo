@@ -36,9 +36,10 @@ public class Path {
     public void setCoords(List<Pair<Integer, Integer>> coords) {
         this.coords = coords;
     }
-    
+
     /**
      * Palauttaa osuma alueen joka on määritelty polulle
+     *
      * @return Osuma alue palautetaan Listana Shape-tyyppisiä olioita
      */
     public List<Shape> getHitBox() {
@@ -106,15 +107,9 @@ public class Path {
             double y2 = coords.get(i).getValue();
             double w = this.width;
             if (Objects.equals(coords.get(i).getKey(), coords.get(i - 1).getKey())) {
-                pathPart = new Polygon(
-                         x1 - w,  y1 - w,  x1 + w,  y1 - w,
-                         x2 + w,  y2 + w,  x2 - w,  y2 + w
-                );
+                pathPart = new Polygon(x1 - w, y1 - w, x1 + w, y1 - w, x2 + w, y2 + w, x2 - w, y2 + w);
             } else {
-                pathPart = new Polygon(
-                         x1,  y1 - w,  x1,  y1 + w,
-                         x2,  y2 + w,  x2,  y2 - w
-                );
+                pathPart = new Polygon(x1, y1 - w, x1, y1 + w, x2, y2 + w, x2, y2 - w);
             }
             newHitbox.add(pathPart);
         }

@@ -13,7 +13,6 @@ public class Map {
     private ArrayList<Tower> objects;
     private ArrayList<NPC> enemies;
     private ArrayList<Tower> toAdd;
-    private boolean resolved;
 
     /**
      * Luo uuden kartta olion joka hallinnoi pelin sovelluslogiikkaa.
@@ -28,7 +27,7 @@ public class Map {
         this.path = new Path(25);
         this.objects = new ArrayList<>();
         this.enemies = new ArrayList<>();
-        this.resolved = true;
+        this.toAdd = new ArrayList<>();
     }
 
     /**
@@ -50,7 +49,6 @@ public class Map {
      * @see fi.defence.engine.Tower#engageShootable
      */
     public void resolveIntersects() {
-        this.resolved = false;
         for (Tower t : this.objects) {
             for (NPC n : this.enemies) {
                 if (t.shootableInRange(n)) {

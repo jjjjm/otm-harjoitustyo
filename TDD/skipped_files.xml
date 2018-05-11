@@ -9,4 +9,5 @@
     <suppress files="fi.defence.ui.PlayingField.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="fi.defence.ui.TopBar.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="fi.defence.ui.main.Main.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="fi.defence.ui.MenuWindow.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>

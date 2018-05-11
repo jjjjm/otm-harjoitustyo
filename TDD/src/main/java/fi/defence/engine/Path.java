@@ -33,8 +33,13 @@ public class Path {
         return coords;
     }
 
+    /**
+     * Asettaaa uudet koordinaatit polulle ja laskee tälle osuma-alueen
+     * @param coords koordinaatti pisteet x-y muodossa Pair<Integer,Integer> listana
+     */
     public void setCoords(List<Pair<Integer, Integer>> coords) {
         this.coords = coords;
+        this.calculateHitBox();
     }
 
     /**

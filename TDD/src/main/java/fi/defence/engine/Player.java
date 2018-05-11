@@ -55,11 +55,12 @@ public class Player {
      * Vähentää pelaajan rahoja tornin rakennuksen johdosta
      */
     public void buildTower() {
-
+        this.money -= 5;
     }
 
     public int getScore() {
         return this.destroyedTowers;
     }
+    
 
 }

@@ -6,7 +6,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 
 public class Map {
-
+    
     private Player player;
     private int width, length;
     private Path path;
@@ -57,7 +57,7 @@ public class Map {
             }
         }
     }
-
+    
     private void resolveEnemies() {
         ArrayList<NPC> toRemove = new ArrayList<>();
         for (NPC n : this.enemies) {
@@ -73,7 +73,7 @@ public class Map {
         }
         this.enemies.removeAll(toRemove);
     }
-
+    
     private void addTowers() {
         this.objects.addAll(toAdd);
         this.toAdd.clear();
@@ -107,7 +107,8 @@ public class Map {
      * Lisää vihollisen jos se on mahdollista, eli jos vihollisia on kartalla
      * vähemmän tai yhtä paljon kuin raja sallii
      *
-     * @return palauttaa uuden vihollisen käärittynä Optional säiliöön tai tyhjän Optional säiliön
+     * @return palauttaa uuden vihollisen käärittynä Optional säiliöön tai
+     * tyhjän Optional säiliön
      */
     public Optional<NPC> addEnemy() {
         NPC newNPC = new NPC(this.path.getCoords().get(0).getKey(), this.path.getCoords().get(0).getValue(), path, 10, 10, 1);
@@ -120,7 +121,7 @@ public class Map {
             toReturn = Optional.empty();
             return toReturn;
         }
-
+        
     }
 
     /**
@@ -130,7 +131,8 @@ public class Map {
      *
      * @param x uuden tornin x-koordinaatti
      * @param y uuden tornin y-koordinaatti
-     * @return Palauttaa uuden tornin käärittynä Optional<> säiliöön mikä sen lisääminen on mahdollista muuten palautetaan tyhjä säiliö
+     * @return Palauttaa uuden tornin käärittynä Optional<> säiliöön mikä sen
+     * lisääminen on mahdollista muuten palautetaan tyhjä säiliö
      */
     public Optional<Tower> addTower(int x, int y) {
         Optional<Tower> toReturn = Optional.empty();
@@ -159,37 +161,38 @@ public class Map {
      *
      * @param x annettu x
      * @param y annettu y
-     * @return Palauttaa true jos kyseinen koordinaatti osui torniin ja se poistettiin ,muuten palauttaa false
+     * @return Palauttaa true jos kyseinen koordinaatti osui torniin ja se
+     * poistettiin ,muuten palauttaa false
      */
     public boolean removeTower(int x, int y) {
         for (Tower t : this.objects) {
             if (t.getHitBox().intersects(x, y, 20, 20)) {
-                this.player.addScore();
+                this.player.setMoney(player.getMoney() + 5);
                 this.objects.remove(t);
                 return true;
             }
         }
         return false;
     }
-
+    
     public int getMoney() {
         return this.player.getMoney();
     }
-
+    
     public Path getPath() {
         return path;
     }
-
+    
     public int getLength() {
         return length;
     }
-
+    
     public int getWidth() {
         return width;
     }
-
+    
     public int getHealth() {
         return this.player.getHealth();
     }
-
+    
 }

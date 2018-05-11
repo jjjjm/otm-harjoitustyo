@@ -83,7 +83,6 @@ public class IOTest {
         assertTrue(firstClause && secondClause);
     }
 
-    //todo test on top of already existing
     
     @Test
     public void loadPathLoadsNameCorrectly() throws IOException {

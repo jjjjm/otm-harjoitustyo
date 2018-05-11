@@ -38,3 +38,9 @@ _save:532,0:532,53:513,53:513,119:300,119:300,...(lisää pisteitä)...,:62,900:
 Alussa on pisteille annettu nimi, sitä seuraa kaksoispista jonka jälkeen tulevat koordinaattipisteet x-y muodossa joista jokainen on erotettu kaksoispisteillä.   
   
 Lopussa oleva _:end_ merkkaa aina sitä edeltäneen nimen tietojen loppumista ja seuraavan alkamista/tiedoston päättymistä.
+
+## Rakenteeseen jääneet heikkoudet  
+Entities joutuu kutsuaan reduntatisti torneja saadakseen tietää mitä ne ovat ampumassa. Tämän olisi voinut erittää esim. luomalla vielä loogisen luokan ammukselle jota käyttöliittymän graaffiset elementit olisivat voineet seurata, tällä hetkelle itse looginen osa ei tiedä mitään ammusten olemessa olosta.
+  
+    
+Map luokkaa olisi siitä ehkä syytä refaktoroida pienimmiksi kokonaisuusiksi, nyt Map luokka vastaa vähän liian suuren kokonaisuuden hallinnasta

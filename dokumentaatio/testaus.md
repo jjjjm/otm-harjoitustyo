@@ -1,4 +1,4 @@
-#Testausdokumenti  
+# Testausdokumenti  
 Ohjelmaa on testattu automatisoiduin yksikkötestein JUnitilla ja manuaalisesti järjestelmätasolla.
 
 ## Yksikkö- ja integraatiotestaus

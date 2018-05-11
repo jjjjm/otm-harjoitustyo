@@ -8,7 +8,8 @@ Eli tornipuolustuspeli
 [Käyttöohje](https://github.com/jjjjm/otm-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)  
 [Testausdokumentti](https://github.com/jjjjm/otm-harjoitustyo/blob/master/dokumentaatio/testaus.md)  
 ### Releaset  
-[Viikko 6](https://github.com/jjjjm/otm-harjoitustyo/releases)  
+[Viikko 6](https://github.com/jjjjm/otm-harjoitustyo/releases/tag/viikko6)  
+[Loppu palautus](https://github.com/jjjjm/otm-harjoitustyo/releases/tag/loppupalautus)
 ### Komentorivitoiminnot
 #### Testaus  
 Testit voi suorittaa kommennolla   

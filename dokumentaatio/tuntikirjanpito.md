@@ -7,4 +7,6 @@ pvm|aika|mitä tehty
 23-24.4|16|kasvatettu ohjelma jotenkin toimivaan ratkaisuun, sekä muuta viikon 5 sälää
 25.4|5|korjailtu pikku mokia koodista
 1-2.5|10|io-lisäys, javadoccia yms yms.
-yht.|60|
+7-5|7|Koodin refaktorointia yms
+10-11-5|15|Loppu sivallukset
+yht.|83|

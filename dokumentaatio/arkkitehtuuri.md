@@ -8,7 +8,13 @@ IO pakkauksen io luokka vastaa pysyväistallennuksesta ja tiedostojen käsittely
 ## Rakenne  
 ![Pakkauskuva](https://github.com/jjjjm/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/pakkausdiagrammi.png)  
   
-UI sisältää javafx:ää käyttävät käyttöliittymän rakentavat luokat, Engine peli moottorin eri osat ja IO tiedoston käsittelyyn tarkoitetut osat. Main pakkauksen luokat kokoavat kokonaisuuden yhteen. 
+UI sisältää javafx:ää käyttävät käyttöliittymän rakentavat luokat, Engine peli moottorin eri osat ja IO tiedoston käsittelyyn tarkoitetut osat. Main pakkauksen luokat kokoavat kokonaisuuden yhteen.   
+  
+Alla kuvaus pelin loogisista luokista ja niiden välisistä yhteyksistä. Kuten kaaviosta näkyy Map luokka huolehtii lähes kaikesta toiminallisuudesta  
+  
+![Kaaviokuva](https://github.com/jjjjm/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/kaavio.png)
+  
+    
   
 ## Päätoiminnallisuudesta  
 Ohjelman toiminta pelin aikana  

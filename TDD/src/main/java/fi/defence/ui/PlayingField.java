@@ -28,6 +28,11 @@ public class PlayingField {
     private final IO io;
     private boolean saved;
 
+    /**
+     * Luo uuden pelikenttää kuvaavan olion ja alustaa sille jotain tarvittavia tarvittavia olioita.
+     * @param map Ottaa pelattavan kartan parametrikseen
+     * @param io Ottaa käytettävän IO-olion parametrikseen
+     */
     public PlayingField(Map map, IO io) {
         this.io = io;
         this.bPane = new BorderPane();
@@ -40,17 +45,28 @@ public class PlayingField {
         this.scene = new Scene(bPane);
     }
 
+    /**
+     * Alustaa PlayingField olion lopulliseen käyttötilaan, asettaa polun grafiikan eventFilterit yms.
+     */
     public void init() {
         this.saved = false;
         this.setPath();
         this.bPane.setTop(this.topBar.init());
         this.mouseInit();
-        drawEnemy();
+        this.drawEnemy();
     }
 
+    /**
+     * Tarkastaa kaikki poistettavat/luotavat kohteet, lisää/poistaa ne kartalta ja siirtää vihollisia/ammuksia eteeenpäin.
+     * Vastaa siis kaikesta käyttöliittymän tapahtumista
+     * @see fi.defence.ui.Entities#addEnemy() 
+     * @see fi.defence.ui.Entities#calculateProjectiles() 
+     * @see fi.defence.ui.Entities#returnProjectiles() 
+     * @see fi.defence.ui.Entities#returnRemovableEnemyShapes() 
+     * @see fi.defence.ui.Entities#returnRemovableProjectiles() 
+     */
     public void animate() {
         this.pane.getChildren().removeAll(this.entitities.returnRemovableEnemyShapes());
-        this.pane.getChildren().removeAll(this.entitities.returnRemovableTowers());
         this.pane.getChildren().addAll(this.entitities.returnProjectiles());
         this.pane.getChildren().removeAll(this.entitities.returnRemovableProjectiles());
         this.topBar.getText().textProperty().setValue("" + this.map.getMoney() + " - " + this.map.getHealth() + (map.getHealth() >= 0 ? "" : "DEAD"));
@@ -64,10 +80,13 @@ public class PlayingField {
         }
     }
 
+    /**
+     * Piirtää uuden vihollisen mikäli se on mahdollista
+     */
     public void addEnemy() {
         this.drawEnemy();
     }
-
+    
     public Scene getScene() {
         return scene;
     }

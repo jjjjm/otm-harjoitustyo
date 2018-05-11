@@ -121,10 +121,6 @@ public class Entities {
         return this.translateEnemies();
     }
 
-    public List<Shape> returnRemovableTowers() {
-        return new LinkedList<>();
-    }
-
     /**
      * Palauttaa listan sellaisista vihollisista jotka voidaan poistaa pelistä
      * (ts. ne on päässyt loppuun tai kohde on tuhottu)

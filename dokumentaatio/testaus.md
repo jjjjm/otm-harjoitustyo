@@ -35,3 +35,4 @@ kuten virheellisiä arvoja maps.txt tiedostossa.
 
 ## Sovellukseen jääneet laatuongelmat
 IO ei ota kantaa siihen onko mahdollisesti jo teityllä nimellä oleva kartta jo tallennettu. Se ei myöskään osaa ladata jos samannimisiä tallennetaan
+Joskus graaffiset elementit tekevät jotain odottamatonta, en löytänyt tälle varsinaisia syitä koska en saanut muodostettua tilanteita uudestaan debugatessani

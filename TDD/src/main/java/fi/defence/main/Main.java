@@ -10,8 +10,8 @@ import fi.defence.io.IO;
 import java.io.IOException;
 
 /**
- *
- * @author .
+ * Vastaa kokonaisuudessaan pelin toiminista siinä määrin mikä näkyy pelaajalle
+ * Käyttää hyväkseen animationTimer luokkaa kutsuakseen animointi ja pelin loogisia rutiineja tietyin aikavälien
  */
 public class Main extends Application {
 

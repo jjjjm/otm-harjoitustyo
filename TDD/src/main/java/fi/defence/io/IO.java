@@ -21,7 +21,7 @@ public class IO {
      * Luo tiedoston jos sitä ei ole olemassa ja palauttaa käsiteltävästä
      * tiedostosta File muotoisen olion
      *
-     * @param Luotavan/etsittävän tiedoston nimi
+     * @param name Luotavan/etsittävän tiedoston nimi
      * @return palauttaa File tyyppisen olion määritellystä tiedostosat
      */
     public File createFile(String name) throws IOException {
@@ -34,7 +34,7 @@ public class IO {
      * Tallentaa annetun polun tiedot annetulla nimellä tiedostoon maps.txt
      * (Oikeastaan tallennetaan vain polun koordinaatti pisteet
      *
-     * @param path
+     * @param path Tallennettava polku
      * @param name tallennettavan polun nimi
      * @throws IOException
      */
@@ -53,7 +53,7 @@ public class IO {
      * Palauttaa tiedostoon maps.txt tallennettujen polkujen tiedot
      *
      * @return HashMap jonka avaimina on poluille annetut nimet ja arvoina lista
-     * kyseisen polun eri pisteistä (Pisteet muodossa Pair<Integer,Integer>)
+     * kyseisen polun eri pisteistä (Pisteet muodossa Pair\<Integer,Integer\>)
      * @throws IOException
      */
     public HashMap<String, List<Pair<Integer, Integer>>> loadPath() throws IOException {

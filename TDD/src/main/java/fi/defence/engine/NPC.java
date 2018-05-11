@@ -3,6 +3,9 @@ package fi.defence.engine;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 
+/**
+ * Kuvaa yksittäistä vihollista pelissä
+ */
 public class NPC {
 
     private double x, y, hitBoxRadius;

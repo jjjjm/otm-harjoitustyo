@@ -12,6 +12,9 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 
+/**
+ * Kuvaa pelin liikkuvia ja muuttuvia graaffisia elementtejä
+ */
 public class Entities {
 
     private Map map;
@@ -19,6 +22,11 @@ public class Entities {
     private HashMap<NPC, Circle> enemies;
     private HashMap<Circle, NPC> projectile;
 
+    /**
+     * Luo uuden entities olion muiden luokkien käyttöävarten
+     *
+     * @param map Ottaa parametrikseen pelissä käytössä olevan kartan
+     */
     public Entities(Map map) {
         this.map = map;
         this.friendly = new HashMap<>();
@@ -26,6 +34,13 @@ public class Entities {
         this.projectile = new HashMap<>();
     }
 
+    /**
+     * Alustaa kartalle lisätättävät uudet vihollis elementit
+     *
+     * @return palauttaa List-olion missä on kaikki uudet viholliset tai tyhjä
+     * lista jos sellaisia ei ole
+     * @see fi.defence.engine.Map#addEnemy()
+     */
     List<Circle> addEnemy() {
         List<Circle> toReturn = new LinkedList<>();
         Circle newEnemy = new Circle(map.getPath().getCoords().get(0).getKey(), map.getPath().getCoords().get(0).getValue(), 10);
@@ -53,7 +68,7 @@ public class Entities {
         return toReturn;
     }
 
-    List<Circle> translateProjectiles() {
+    private List<Circle> translateProjectiles() {
         List<Circle> toReturn = new LinkedList<>();
         for (java.util.Map.Entry<Circle, NPC> n : this.projectile.entrySet()) {
             if (this.enemies.containsKey(n.getValue())) {
@@ -75,7 +90,7 @@ public class Entities {
     private List<Shape> calculateProjectiles() {
         List<Shape> toReturn = new LinkedList<>();
         for (Tower t : this.friendly.keySet()) {
-            for (NPC  n : this.enemies.keySet()) {
+            for (NPC n : this.enemies.keySet()) {
                 if (t.shootableInRange(n)) {
                     Circle newProjectile = new Circle(t.getX(), t.getY(), 4);
                     this.projectile.put(newProjectile, n);
@@ -86,10 +101,22 @@ public class Entities {
         return toReturn;
     }
 
+    /**
+     * Alustaa mahdolliset uudet ammus grafiikat
+     *
+     * @return Palauttaa listan uusista ammuksista tai tyhjän listan jos niitä
+     * ei ole
+     */
     List<Shape> returnProjectiles() {
         return this.calculateProjectiles();
     }
 
+    /**
+     * Palauttaa listan sellaisista vihollisista jotka voidaan poistaa pelistä
+     * (ts. ne on päässyt loppuun tai kohde on tuhottu)
+     *
+     * @return Lista poistettavista tai tyhjä lista jos sellaisia ei ole
+     */
     List<Circle> returnRemovableEnemyShapes() {
         return this.translateEnemies();
     }
@@ -98,10 +125,25 @@ public class Entities {
         return new LinkedList<>();
     }
 
+    /**
+     * Palauttaa listan sellaisista vihollisista jotka voidaan poistaa pelistä
+     * (ts. ne on päässyt loppuun tai kohde on tuhottu)
+     *
+     * @return Lista poistettavista tai tyhjä lista jos sellaisia ei ole
+     */
     List<Circle> returnRemovableProjectiles() {
         return this.translateProjectiles();
     }
 
+    /**
+     * Alustaa uuden torni elementin jos sellainen on mahdollista
+     *
+     * @param xd uuden tornin keskikohdan x-koordinaati
+     * @param yd uuden tornin keskikohdan y-koordinaati
+     * @return palauttaa uuden tornin kapseloituta List-olioon, tai tyhjän
+     * listan jos uutta tornia ei voitu lisätä
+     * @see fi.defence.engine.Map#addTower(int, int)
+     */
     List<Shape> addTower(double xd, double yd) {
         List<Shape> toReturn = new LinkedList<Shape>();
         int x = (int) Math.floor(xd);
@@ -124,6 +166,12 @@ public class Entities {
         return toReturn;
     }
 
+    /**
+     * Palauttaa kaikki pelaajan hallinnassa olevat elementit
+     *
+     * @return Palauttaa List-olion jossa pelaajan hallitsemat kohteet on tai
+     * tyhjän listan jos sellaisia ei ole
+     */
     public List<Polygon> getFriendly() {
         List<Polygon> toReturn = new LinkedList<>();
         for (Polygon p : this.friendly.values()) {

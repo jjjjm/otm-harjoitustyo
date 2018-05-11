@@ -5,7 +5,6 @@ import java.util.Optional;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 
-
 public class Map {
 
     private Player player;
@@ -18,11 +17,12 @@ public class Map {
 
     /**
      * Luo uuden kartta olion joka hallinnoi pelin sovelluslogiikkaa.
+     *
      * @param width asettaa kartan leveyden
      * @param length asettaa kartan korkeuden
      */
     public Map(int width, int length) {
-        this.player = new Player(50,10);
+        this.player = new Player(50, 10);
         this.width = width;
         this.length = length;
         this.path = new Path(25);
@@ -32,18 +32,23 @@ public class Map {
     }
 
     /**
-     * Generoi kartalle uuden satunnaisen polun käyttäen Path metodeita, ottaa parametrikseen risteysten lukumäärän
+     * Generoi kartalle uuden satunnaisen polun käyttäen Path metodeita, ottaa
+     * parametrikseen risteysten lukumäärän
+     *
      * @param verticeAmount risteysten lkm
-     * @see fi.defence.engine.Path.generateRandomPath
+     * @see fi.defence.engine.Path#generateRandomPath
      */
     public void generateNewRandomPath(int verticeAmount) {
         this.path.generateRandomPath(this.length, this.width, verticeAmount);
     }
-/**
- * Etsii viholliset jotka ovat tornien ampuma-alueilla ja kutsuu tornin ampumis metodia nille jotka ovat.
- * @see fi.defence.engine.Tower.shootableInRange
- * @see fi.defence.engine.Tower.engageShootable
- */
+
+    /**
+     * Etsii viholliset jotka ovat tornien ampuma-alueilla ja kutsuu tornin
+     * ampumis metodia nille jotka ovat.
+     *
+     * @see fi.defence.engine.Tower#shootableInRange
+     * @see fi.defence.engine.Tower#engageShootable
+     */
     public void resolveIntersects() {
         this.resolved = false;
         for (Tower t : this.objects) {
@@ -75,12 +80,15 @@ public class Map {
         this.objects.addAll(toAdd);
         this.toAdd.clear();
     }
-/**
- * Kutsuu useita omia sisäisiä metodejaan ajakseen yhden askeleen peliä eteenpäin.
- * Lisää uudet tornit, selvittää ampuma tilanteet, selvittää vihollisten tilanteet 
- * ja siirtää vielä elossa olevia vihollis olioita eteenpäin.
- * @see fi.defence.engine.NPC.traverseToNextNode
- */
+
+    /**
+     * Kutsuu useita omia sisäisiä metodejaan ajakseen yhden askeleen peliä
+     * eteenpäin. Lisää uudet tornit, selvittää ampuma tilanteet, selvittää
+     * vihollisten tilanteet ja siirtää vielä elossa olevia vihollis olioita
+     * eteenpäin.
+     *
+     * @see fi.defence.engine.NPC#traverseToNextNode
+     */
     public void resolve() {
         this.addTowers();
         this.resolveIntersects();
@@ -90,14 +98,17 @@ public class Map {
 
     /**
      * Asettaa kaikki kartalla olevat tornit ampumakykyisiksi
-     * @see fi.defence.engine.Tower.reset
+     *
+     * @see fi.defence.engine.Tower#reset
      */
     public void resetTowers() {
         this.objects.forEach(t -> t.reset());
     }
+
     /**
-     * Lisää vihollisen jos se on mahdollista, eli jos vihollisia on kartalla vähemmän 
-     * tai yhtä paljon kuin raja sallii
+     * Lisää vihollisen jos se on mahdollista, eli jos vihollisia on kartalla
+     * vähemmän tai yhtä paljon kuin raja sallii
+     *
      * @return palauttaa uuden vihollisen käärittynä Optional säiliöön tai tyhjän Optional säiliön
      */
     public Optional<NPC> addEnemy() {
@@ -113,13 +124,15 @@ public class Map {
         }
 
     }
+
     /**
-     * Lisää uuden tornin mikäli sen lisääminen on mahdollista.
-     * Tornia ei lisätä mikäli pelaajalla ei ole tarpeeksi rahaa tai torni osuu johonkin muuhun torniin/polkuun
+     * Lisää uuden tornin mikäli sen lisääminen on mahdollista. Tornia ei lisätä
+     * mikäli pelaajalla ei ole tarpeeksi rahaa tai torni osuu johonkin muuhun
+     * torniin/polkuun
+     *
      * @param x uuden tornin x-koordinaatti
      * @param y uuden tornin y-koordinaatti
-     * @return Palauttaa uuden tornin käärittynä Optional<> säiliöön mikä sen lisääminen on mahdollista
-     *         muuten palautetaan tyhjä säiliö
+     * @return Palauttaa uuden tornin käärittynä Optional<> säiliöön mikä sen lisääminen on mahdollista muuten palautetaan tyhjä säiliö
      */
     public Optional<Tower> addTower(int x, int y) {
         Optional<Tower> toReturn = Optional.empty();
@@ -141,13 +154,14 @@ public class Map {
         }
         return toReturn;
     }
-    
+
     /**
-     * Poistaa tornin kartalta jos annetut koordinaatit osuvat johonkin torniin mikä on kartalla
+     * Poistaa tornin kartalta jos annetut koordinaatit osuvat johonkin torniin
+     * mikä on kartalla
+     *
      * @param x annettu x
      * @param y annettu y
-     * @return Palauttaa true jos kyseinen koordinaatti osui torniin ja se poistettiin
-     *         ,muuten palauttaa false
+     * @return Palauttaa true jos kyseinen koordinaatti osui torniin ja se poistettiin ,muuten palauttaa false
      */
     public boolean removeTower(int x, int y) {
         for (Tower t : this.objects) {

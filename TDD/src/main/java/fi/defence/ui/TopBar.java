@@ -43,7 +43,8 @@ public class TopBar {
 
     /**
      * Alustaa luokan oliot käyttökelpoisiksi
-     *
+     * Asettaa jokaiselle napille tarvittavat event-handlerit ja alustaa myös teksti kentän
+     * 
      * @return palauttaa HBox olion joka voidaan lisätä juuri ikkunan lapseksi
      * jolloin saadaan valikko palkki näkyviin
      */

@@ -3,6 +3,9 @@ package fi.defence.engine;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 
+/**
+ * Kuvaa yksittäistä tornia pelissä
+ */
 public class Tower {
 
     private int x, y, range, damage;

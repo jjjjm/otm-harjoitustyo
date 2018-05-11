@@ -8,6 +8,9 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 import javafx.util.Pair;
 
+/**
+ * Kuvaa pelissä olevaa polkua mitä pitkin viholliset kulkevat
+ */
 public class Path {
 
     private final int width;
@@ -33,7 +36,11 @@ public class Path {
     public void setCoords(List<Pair<Integer, Integer>> coords) {
         this.coords = coords;
     }
-
+    
+    /**
+     * Palauttaa osuma alueen joka on määritelty polulle
+     * @return Osuma alue palautetaan Listana Shape-tyyppisiä olioita
+     */
     public List<Shape> getHitBox() {
         return hitBox;
     }

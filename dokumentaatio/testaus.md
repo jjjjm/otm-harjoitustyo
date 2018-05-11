@@ -34,4 +34,4 @@ kuten virheellisiä arvoja maps.txt tiedostossa.
 
 
 ## Sovellukseen jääneet laatuongelmat
-_todo_
+IO ei ota kantaa siihen onko mahdollisesti jo teityllä nimellä oleva kartta jo tallennettu. Se ei myöskään osaa ladata jos samannimisiä tallennetaan

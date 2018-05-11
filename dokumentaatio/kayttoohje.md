@@ -1,7 +1,7 @@
 # Käyttöohje
 Lataa [releaseista](https://github.com/jjjjm/otm-harjoitustyo/releases) jar tiedosto.  
 _Ohjelma olettaa että se voi luoda tiedostoja_(tai tarvittaessa voidaan luoda maps.txt samaan kansioon jarin kanssa)  
-Ohjelma myös olettaa _style.css_ löytyvän samasta kansiosta jarin kanssa
+Ohjelma myös olettaa _style.css_ löytyvän samasta kansiosta jarin kanssa  
 JavaFX:n pitäisi tulla JDK:n mukana ja ilmeisesti myös JVM:n kanssa
 # Käynnistäminen 
 Ohjelman voi käynnistää komennolla  

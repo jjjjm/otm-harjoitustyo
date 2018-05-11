@@ -53,7 +53,7 @@ public class IO {
      * Palauttaa tiedostoon maps.txt tallennettujen polkujen tiedot
      *
      * @return HashMap jonka avaimina on poluille annetut nimet ja arvoina lista
-     * kyseisen polun eri pisteistä (Pisteet muodossa Pair\<Integer,Integer\>)
+     * kyseisen polun eri pisteistä (Pisteet muodossa Pair&lt;Integer,Integer&gt;)
      * @throws IOException
      */
     public HashMap<String, List<Pair<Integer, Integer>>> loadPath() throws IOException {

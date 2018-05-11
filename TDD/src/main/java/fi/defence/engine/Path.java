@@ -35,7 +35,7 @@ public class Path {
 
     /**
      * Asettaaa uudet koordinaatit polulle ja laskee tälle osuma-alueen
-     * @param coords koordinaatti pisteet x-y muodossa Pair<Integer,Integer> listana
+     * @param coords koordinaatti pisteet x-y muodossa Pair&lt;Integer,Integer&gt; listana
      */
     public void setCoords(List<Pair<Integer, Integer>> coords) {
         this.coords = coords;

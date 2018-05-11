@@ -9,4 +9,5 @@ pvm|aika|mitä tehty
 1-2.5|10|io-lisäys, javadoccia yms yms.
 7-5|7|Koodin refaktorointia yms
 10-11-5|15|Loppu sivallukset
-yht.|83|
+undef|10|Satunnaisia kirjoitteluja joita en ole typeryyksissäni muistanut merkitä ylös
+yht.|93|
